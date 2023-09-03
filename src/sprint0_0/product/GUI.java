@@ -11,6 +11,8 @@ public class GUI extends JFrame {
 
     public GUI(){
         setContentPane();
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        this.setLocationRelativeTo((Component)null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setTitle("Tic Tac Toe");
@@ -27,13 +29,11 @@ public class GUI extends JFrame {
 //        contentPane.add(gameBoardCanvas, BorderLayout.CENTER);
     }
 
-    public class Main {
-        public static void main(String[] args) {
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    new GUI();
-                }
-            });
-        }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new GUI();
+            }
+        });
     }
 }
