@@ -6,13 +6,17 @@ import java.awt.*;
 
 public class GameBoardPanel extends JPanel {
     JPanel test;
+    JLabel title;
     GameBoardPanel() {
         GridBagConstraints gbc = new GridBagConstraints();
-        setBackground(Color.black);
-        Border blackline = BorderFactory.createLineBorder(Color.red);
+//        setBackground(Color.black);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
         setLayout(new GridBagLayout());
         test = new JPanel();
         test.setBorder(blackline);
+
+        title = new JLabel("SOS");
+        title.setFont(new Font("SansSerif", 1, 28));
 //        test.setSize(getWidth() - 20, getWidth() - 20);
 
 //        gbc.ipady = 20;
@@ -22,7 +26,7 @@ public class GameBoardPanel extends JPanel {
         gbc.weightx = 1;
 //        gbc.anchor = GridBagConstraints.NORTH;
 //        gbc.ipadx = 20;
-        add(new JLabel("SOS"), gbc);
+        add(title, gbc);
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 1;
 //        gbc.ipady = 50;

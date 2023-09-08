@@ -66,3 +66,12 @@ public class GUI extends JFrame {
         });
     }
 }
+
+//I could restrure everything in gridbag layout so that even if the grid expands it will be constant
+//One giant grid instead if three sperate pannelsx
+
+//call a panel class from... to add to grid
+
+//maybe I do need to set preffered size for center
+
+//I could use the total size from frame for making grid size
