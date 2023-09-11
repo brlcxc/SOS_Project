@@ -5,12 +5,11 @@ import java.awt.*;
 
 public class GUI extends JFrame {
 
-    final int WINDOW_WIDTH = 900;
-    final int WINDOW_HEIGHT = 500;
-//    private GameBoardCanvas gameBoardCanvas;
+    final int WINDOW_WIDTH = 700;
+    final int WINDOW_HEIGHT = 440;
     private BluePlayerPanel bluePlayerPanel;
     private RedPlayerPanel redPlayerPanel;
-    private GameBoardPanel gameBoardPanel;
+    private CenterPanel centerPanel;
 
 
     public GUI(){
@@ -20,45 +19,60 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("SOS");
         setVisible(true);
-        System.out.println(gameBoardPanel.getWidth());
-        gameBoardPanel.setSize(gameBoardPanel.getWidth(), gameBoardPanel.getWidth());
-        //maybe make it a number divisible by something?
-
     }
     private void setContentPane(){
         GridBagConstraints gbc = new GridBagConstraints();
+
         bluePlayerPanel = new BluePlayerPanel();
         redPlayerPanel = new RedPlayerPanel();
-        gameBoardPanel = new GameBoardPanel();
-//        gameBoardCanvas = new GameBoardCanvas();
-//        CANVAS_WIDTH = CELL_SIZE * 3;
-//        CANVAS_HEIGHT = CELL_SIZE * 3;
-//        gameBoardCanvas.setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT));
-//
+        centerPanel = new CenterPanel();
+
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
 
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0.27;
-        gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-//        gbc.fill = GridBagConstraints.VERTICAL;
-//        gbc.weighty = 1;
-        contentPane.add(bluePlayerPanel, gbc);
+        gbc.weighty = 1;
+        contentPane.add(bluePlayerPanel.topPanel, gbc);
+
+        gbc.gridy = -1;
+        gbc.weighty = 0;
+        contentPane.add(bluePlayerPanel.playerOptionPanel, gbc);
+
+        gbc.gridy = -2;
+        gbc.weighty = 1;
+        contentPane.add(bluePlayerPanel.bottomPanel, gbc);
 
         gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridheight = 4;
         gbc.weightx = 0.46;
-        contentPane.add(gameBoardPanel, gbc);
+        contentPane.add(centerPanel, gbc);
 
-        //for game panel I need to utlize the getsize command
 
         gbc.gridx = 2;
+        gbc.gridheight = 1;
         gbc.weightx = 0.27;
-        contentPane.add(redPlayerPanel, gbc);
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
+        contentPane.add(redPlayerPanel.topPanel, gbc);
+
+        gbc.gridy = -1;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
+        contentPane.add(redPlayerPanel.playerOptionPanel, gbc);
+
+        gbc.gridy = -2;
+        gbc.weighty = 1;
+        contentPane.add(redPlayerPanel.bottomPanel, gbc);
     }
 
-    public static void main(String[] args) {
+    private void resizeBoard() {
+        //I need to use a component listener for resizing
+    }
+
+        public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new GUI();
@@ -66,12 +80,3 @@ public class GUI extends JFrame {
         });
     }
 }
-
-//I could restrure everything in gridbag layout so that even if the grid expands it will be constant
-//One giant grid instead if three sperate pannelsx
-
-//call a panel class from... to add to grid
-
-//maybe I do need to set preffered size for center
-
-//I could use the total size from frame for making grid size
