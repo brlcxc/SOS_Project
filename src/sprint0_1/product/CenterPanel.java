@@ -37,4 +37,8 @@ public class CenterPanel extends JPanel {
         add(new JLabel("Current turn: ..."), gbc);
     }
 
+    public void ChangeGameBoardSize(int num){
+        gameBoardPanel.SizeChange(num);
+    }
+
 }

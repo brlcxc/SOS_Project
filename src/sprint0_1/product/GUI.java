@@ -24,8 +24,11 @@ public class GUI extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
 
         bluePlayerPanel = new BluePlayerPanel();
-        redPlayerPanel = new RedPlayerPanel();
+//        redPlayerPanel = new RedPlayerPanel();
+//        centerPanel = new CenterPanel(bluePlayerPanel, redPlayerPanel);
         centerPanel = new CenterPanel();
+        redPlayerPanel = new RedPlayerPanel(centerPanel);
+//        centerPanel = new CenterPanel(redPlayerPanel);
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
