@@ -1,4 +1,4 @@
-package sprint2_0.product;
+package sprint2_1.product;
 
 
 import javax.swing.*;

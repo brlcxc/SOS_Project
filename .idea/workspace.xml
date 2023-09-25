@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/GameBoardPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/GameLogic.java" afterDir="false" />
+    <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="sprint2_0 commit">
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/BluePlayerPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/CenterPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/GUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/RedPlayerPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/TextFormatter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/BluePlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/BluePlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GameBoardPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/RedPlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/TextFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/TextFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_0/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_0/product/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_0/product/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_0/product/GameBoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_0/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_0/product/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_0/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_0/product/RedPlayerPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695067358318</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="sprint2_0 commit">
+      <created>1695654051833</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695654051833</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +169,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test commit" />
     <MESSAGE value="sprint0_1 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint0_1 commit" />
+    <MESSAGE value="sprint2_0 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint2_0 commit" />
   </component>
 </project>

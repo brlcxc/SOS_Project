@@ -1,4 +1,4 @@
-package sprint2_0.product;
+package sprint1_0.product;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,6 +56,7 @@ public class GUI extends JFrame {
         gbc.gridheight = 4;
         gbc.weightx = 0.46;
         contentPane.add(centerPanel, gbc);
+
 
         gbc.gridx = 2;
         gbc.gridheight = 1;

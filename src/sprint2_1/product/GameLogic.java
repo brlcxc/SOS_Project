@@ -1,4 +1,4 @@
-package sprint2_0.product;
+package sprint2_1.product;
 
 //maybe I dont have to reset the class itself but rather something within it
 public class GameLogic {

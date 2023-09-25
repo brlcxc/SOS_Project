@@ -1,28 +1,25 @@
-package sprint2_0.product;
+package sprint1_0.product;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class RedPlayerPanel extends JPanel {
     JPanel playerOptionPanel;
     JPanel topPanel;
     JPanel bottomPanel;
-    private JRadioButton humanOption;
-    private JRadioButton computerOption;
-    private JRadioButton sOption;
-    private JRadioButton oOption;
-    private ButtonGroup playerGroup;
-    private ButtonGroup moveGroup;
+    JRadioButton humanOption;
+    JRadioButton computerOption;
+    JRadioButton sOption;
+    JRadioButton oOption;
+    ButtonGroup playerGroup;
+    ButtonGroup moveGroup;
 //    CenterPanel centerPanel;
-    private GameBoardPanel gameBoardPanel;
-    private GameLogic gameLogic;
-    private JSpinner spin;
-//    private GameLogic.Cell moveType;
+    GameBoardPanel gameBoardPanel;
+    GameLogic gameLogic;
+    JSpinner spin;
     RedPlayerPanel(GameBoardPanel gameBoardPanel, GameLogic gameLogic) {
 //        this.centerPanel = GUI.centerPanel;
         this.gameBoardPanel = gameBoardPanel;
@@ -41,9 +38,6 @@ public class RedPlayerPanel extends JPanel {
         computerOption = new JRadioButton("Computer");
         sOption = new JRadioButton("S");
         oOption = new JRadioButton("O");
-
-        sOption.addActionListener(new SButtonListener());
-        oOption.addActionListener(new OButtonListener());
 
         playerGroup = new ButtonGroup();
         playerGroup.add(humanOption);
@@ -124,17 +118,4 @@ public class RedPlayerPanel extends JPanel {
             //there has to be a better way than calling a function that calls a function
         }
     }
-    private class SButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            gameBoardPanel.updateMoveType(GameLogic.Cell.S);
-        }
-    }
-    private class OButtonListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            gameBoardPanel.updateMoveType(GameLogic.Cell.O);
-        }
-    }
-//    public GameLogic.Cell getMoveType(){
-//        return moveType;
-//    }
 }
