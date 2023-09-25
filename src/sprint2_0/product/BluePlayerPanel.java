@@ -1,10 +1,10 @@
-package sprint0_1.product;
+package sprint2_0.product;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class RedPlayerPanel extends JPanel {
+public class BluePlayerPanel {
     JPanel playerOptionPanel;
     JPanel topPanel;
     JPanel bottomPanel;
@@ -12,9 +12,10 @@ public class RedPlayerPanel extends JPanel {
     JRadioButton computerOption;
     JRadioButton sOption;
     JRadioButton oOption;
+    JCheckBox recordOption;
     ButtonGroup playerGroup;
     ButtonGroup moveGroup;
-    RedPlayerPanel() {
+    BluePlayerPanel() {
         setPlayerOptionPanel();
         setTopPanel();
         setBottomPanel();
@@ -29,6 +30,7 @@ public class RedPlayerPanel extends JPanel {
         computerOption = new JRadioButton("Computer");
         sOption = new JRadioButton("S");
         oOption = new JRadioButton("O");
+        recordOption = new JCheckBox("Record Game");
 
         playerGroup = new ButtonGroup();
         playerGroup.add(humanOption);
@@ -45,8 +47,8 @@ public class RedPlayerPanel extends JPanel {
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.EAST;
-        playerOptionPanel.add(new JLabel("Player2"), gbc);
+        gbc.anchor = GridBagConstraints.LAST_LINE_START;
+        playerOptionPanel.add(new JLabel("Player1"), gbc);
 
         gbc.insets = new Insets(5,10,5,10);
         gbc.gridy = -1;
@@ -72,6 +74,12 @@ public class RedPlayerPanel extends JPanel {
     private void setBottomPanel(){
         bottomPanel = new JPanel();
 
+        recordOption = new JCheckBox("Record Game");
+
         bottomPanel.setLayout(new BorderLayout());
+
+        recordOption.setBorder(new EmptyBorder(10,10,10,10));
+
+        bottomPanel.add(recordOption, BorderLayout.SOUTH);
     }
 }

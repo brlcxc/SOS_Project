@@ -1,4 +1,4 @@
-package sprint0_1.product;
+package sprint2_0.product;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,6 +10,8 @@ public class GUI extends JFrame {
     private BluePlayerPanel bluePlayerPanel;
     private RedPlayerPanel redPlayerPanel;
     private CenterPanel centerPanel;
+    private GameLogic gameLogic;
+    private GameBoardPanel gameBoardPanel;
 
 
     public GUI(){
@@ -23,9 +25,13 @@ public class GUI extends JFrame {
     private void setContentPane(){
         GridBagConstraints gbc = new GridBagConstraints();
 
+        gameLogic = new GameLogic();
+        gameBoardPanel = new GameBoardPanel(gameLogic);
+        centerPanel = new CenterPanel(gameBoardPanel);
         bluePlayerPanel = new BluePlayerPanel();
-        redPlayerPanel = new RedPlayerPanel();
-        centerPanel = new CenterPanel();
+        redPlayerPanel = new RedPlayerPanel(gameBoardPanel, gameLogic);
+
+        gameLogic.initGame(3,3);
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());

@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/GameBoardPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint1_0/product/GameLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint0_1/product/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint0_1/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint0_1/product/GameBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint0_1/product/RedPlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/BluePlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/BluePlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/CenterPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/GameBoardPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/RedPlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint0_1/product/TextFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint1_0/product/TextFormatter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +43,7 @@
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.sprint0_1">
+  <component name="RunManager" selected="Application.sprint2_0">
     <configuration name="sprint0_0" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sprint0_0.product.GUI" />
       <module name="SOS Project" />
@@ -54,9 +58,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="sprint1_0" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sprint1_0.product.GUI" />
+      <module name="SOS Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sprint2_0" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sprint2_0.product.GUI" />
+      <module name="SOS Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.sprint0_0" />
+      <item itemvalue="Application.sprint1_0" />
       <item itemvalue="Application.sprint0_1" />
+      <item itemvalue="Application.sprint2_0" />
+      <item itemvalue="Application.sprint0_0" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -117,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694397225496</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="sprint0_1 commit">
+      <created>1695067358318</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695067358318</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

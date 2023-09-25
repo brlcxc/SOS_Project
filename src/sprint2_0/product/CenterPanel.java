@@ -1,23 +1,18 @@
-package sprint0_1.product;
+package sprint2_0.product;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CenterPanel extends JPanel {
-//    public static final int GAME_BOARD_SIZE = 250;
-//    public static final int CELL_SIZE = GAME_BOARD_SIZE / 3;
-//    public static final int GRID_WIDTH = 8;
-//    public static final int GRID_WIDHT_HALF = GRID_WIDTH / 2;
-    GameBoardPanel gameBoardPanel;
-    JLabel title;
-    CenterPanel() {
+    private GameBoardPanel gameBoardPanel;
+    CenterPanel(GameBoardPanel gameBoardPanel) {
         GridBagConstraints gbc = new GridBagConstraints();
 
         setLayout(new GridBagLayout());
 
-        gameBoardPanel = new GameBoardPanel();
+        this.gameBoardPanel = gameBoardPanel;
 
-        title = new JLabel("SOS");
+        JLabel title = new JLabel("SOS");
         title.setFont(new Font("SansSerif", 1, 28));
 
         gbc.insets = new Insets(10,10,10,10);
@@ -28,6 +23,7 @@ public class CenterPanel extends JPanel {
 
         gbc.gridy = -1;
         gbc.weighty = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
         add(gameBoardPanel, gbc);
 
         gbc.gridy = -2;
@@ -36,5 +32,4 @@ public class CenterPanel extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(new JLabel("Current turn: ..."), gbc);
     }
-
 }

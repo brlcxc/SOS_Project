@@ -1,7 +1,9 @@
-package sprint0_1.product;
+package sprint2_0.product;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.DefaultFormatter;
 import java.awt.*;
 
 public class RedPlayerPanel extends JPanel {
@@ -14,7 +16,14 @@ public class RedPlayerPanel extends JPanel {
     JRadioButton oOption;
     ButtonGroup playerGroup;
     ButtonGroup moveGroup;
-    RedPlayerPanel() {
+//    CenterPanel centerPanel;
+    GameBoardPanel gameBoardPanel;
+    GameLogic gameLogic;
+    JSpinner spin;
+    RedPlayerPanel(GameBoardPanel gameBoardPanel, GameLogic gameLogic) {
+//        this.centerPanel = GUI.centerPanel;
+        this.gameBoardPanel = gameBoardPanel;
+        this.gameLogic = gameLogic;
         setPlayerOptionPanel();
         setTopPanel();
         setBottomPanel();
@@ -67,11 +76,46 @@ public class RedPlayerPanel extends JPanel {
         sOption.doClick();
     }
     private void setTopPanel(){
+        GridBagConstraints gbc = new GridBagConstraints();
+
         topPanel = new JPanel();
+        topPanel.setLayout(new GridBagLayout());
+        JLabel sizeLabel = new JLabel("Board size: ");
+        spin = new JSpinner(new SpinnerNumberModel(3,3,12,1));
+//        spin.addChangeListener();
+
+        //code taken from stack overflow
+        JComponent comp = spin.getEditor();
+        JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
+        DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
+        formatter.setCommitsOnValidEdit(true);
+        spin.addChangeListener(new SizeListener());
+
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        topPanel.add(sizeLabel, gbc);
+
+        gbc.gridx = 1;
+        topPanel.add(spin, gbc);
+        //call repaint once actiavted
     }
     private void setBottomPanel(){
         bottomPanel = new JPanel();
 
         bottomPanel.setLayout(new BorderLayout());
+    }
+
+    private class SizeListener implements ChangeListener {
+        private SizeListener() {
+            //I need to call a class from gameboard pannel which might be hard
+        }
+        @Override
+        public void stateChanged(ChangeEvent e) {
+//            centerPanel.ChangeGameBoardSize((Integer) spin.getValue());
+            gameBoardPanel.SizeChange((Integer) spin.getValue());
+            gameLogic.initGame((Integer) spin.getValue(), (Integer) spin.getValue());
+            //there has to be a better way than calling a function that calls a function
+        }
     }
 }
