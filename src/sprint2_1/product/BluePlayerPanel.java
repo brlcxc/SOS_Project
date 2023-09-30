@@ -3,6 +3,8 @@ package sprint2_1.product;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BluePlayerPanel {
     JPanel playerOptionPanel;
@@ -15,7 +17,12 @@ public class BluePlayerPanel {
     JCheckBox recordOption;
     ButtonGroup playerGroup;
     ButtonGroup moveGroup;
-    BluePlayerPanel() {
+    GameLogic gameLogic;
+    GameBoardPanel gameBoardPanel;
+    BluePlayerPanel(CenterPanel centerPanel, GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+        gameBoardPanel = centerPanel.gameBoardPanel;
+
         setPlayerOptionPanel();
         setTopPanel();
         setBottomPanel();
@@ -31,6 +38,9 @@ public class BluePlayerPanel {
         sOption = new JRadioButton("S");
         oOption = new JRadioButton("O");
         recordOption = new JCheckBox("Record Game");
+
+        sOption.addActionListener(new SButtonListener());
+        oOption.addActionListener(new OButtonListener());
 
         playerGroup = new ButtonGroup();
         playerGroup.add(humanOption);
@@ -82,4 +92,20 @@ public class BluePlayerPanel {
 
         bottomPanel.add(recordOption, BorderLayout.SOUTH);
     }
+    private class SButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(gameLogic.getTurn() % 2 != 0) {
+                gameBoardPanel.updateMoveType(GameLogic.Cell.S);
+            }            //maybe I need a set move type too
+        }
+    }
+    private class OButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            if(gameLogic.getTurn() % 2 != 0) {
+                gameBoardPanel.updateMoveType(GameLogic.Cell.O);
+            }
+        }
+    }
+    //I am running into an issue since it is an action listener - even though it is the proper turn the data wont be sent sent the button isnt necesarily pressed
+    //maybe I ned to do the %2 in centeral and then call the proper panel to send move data from there
 }

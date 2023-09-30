@@ -1,6 +1,7 @@
 package sprint2_1.product;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultFormatter;
@@ -20,12 +21,15 @@ public class RedPlayerPanel extends JPanel {
     private ButtonGroup moveGroup;
 //    CenterPanel centerPanel;
     private GameBoardPanel gameBoardPanel;
+    private CenterPanel centerPanel;
     private GameLogic gameLogic;
-    private JSpinner spin;
+    private JSpinner boardSizeInput;
+    private JButton initiateGameButton;
+    private JButton replayButton;
 //    private GameLogic.Cell moveType;
-    RedPlayerPanel(GameBoardPanel gameBoardPanel, GameLogic gameLogic) {
-//        this.centerPanel = GUI.centerPanel;
-        this.gameBoardPanel = gameBoardPanel;
+    RedPlayerPanel(CenterPanel centerPanel, GameLogic gameLogic) {
+        this.centerPanel = centerPanel;
+        gameBoardPanel = centerPanel.gameBoardPanel;
         this.gameLogic = gameLogic;
         setPlayerOptionPanel();
         setTopPanel();
@@ -87,15 +91,15 @@ public class RedPlayerPanel extends JPanel {
         topPanel = new JPanel();
         topPanel.setLayout(new GridBagLayout());
         JLabel sizeLabel = new JLabel("Board size: ");
-        spin = new JSpinner(new SpinnerNumberModel(3,3,12,1));
+        boardSizeInput = new JSpinner(new SpinnerNumberModel(GameLogic.DEFAULT_DIMENSION,GameLogic.BOARD_MIN,GameLogic.BOARD_MAX,1));
 //        spin.addChangeListener();
 
         //code taken from stack overflow
-        JComponent comp = spin.getEditor();
+        JComponent comp = boardSizeInput.getEditor();
         JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
         DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
         formatter.setCommitsOnValidEdit(true);
-        spin.addChangeListener(new SizeListener());
+        boardSizeInput.addChangeListener(new SizeListener());
 
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.gridy = 0;
@@ -103,13 +107,49 @@ public class RedPlayerPanel extends JPanel {
         topPanel.add(sizeLabel, gbc);
 
         gbc.gridx = 1;
-        topPanel.add(spin, gbc);
+        topPanel.add(boardSizeInput, gbc);
         //call repaint once actiavted
     }
     private void setBottomPanel(){
-        bottomPanel = new JPanel();
+        GridBagConstraints gbc = new GridBagConstraints();
 
-        bottomPanel.setLayout(new BorderLayout());
+        bottomPanel = new JPanel();
+        initiateGameButton = new JButton("Start");
+        replayButton = new JButton("Replay");
+
+        initiateGameButton.addActionListener(new InitiateGameButtonListener());
+
+        //maybe have one button that changes text depening on if the game is ongoing or not
+        //quit or pause button shows up near turn when replay is selected
+        //maybe an increment button while paused too?
+
+        //change new game to start game
+
+        bottomPanel.setLayout(new GridBagLayout());
+        bottomPanel.setBorder(new EmptyBorder(0,0,10,10));
+
+        gbc.gridx = 0;
+        gbc.weightx = 0.8;
+        bottomPanel.add(new JLabel(), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weighty = 1;
+//        gbc.gridx = 1;
+        gbc.weightx = 0.2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
+//        gbc.insets = new Insets(0,0,0,10);
+
+        bottomPanel.add(initiateGameButton, gbc);
+        gbc.gridy = -1;
+        gbc.weighty = 0;
+        gbc.anchor = GridBagConstraints.LAST_LINE_END;
+        gbc.insets = new Insets(8,0,0,0);
+
+        bottomPanel.add(replayButton, gbc);
+//        bottomPanel.setBackground(Color.BLUE);
+        //change y weight to lower down
     }
 
     private class SizeListener implements ChangeListener {
@@ -119,19 +159,48 @@ public class RedPlayerPanel extends JPanel {
         @Override
         public void stateChanged(ChangeEvent e) {
 //            centerPanel.ChangeGameBoardSize((Integer) spin.getValue());
-            gameBoardPanel.SizeChange((Integer) spin.getValue());
-            gameLogic.initGame((Integer) spin.getValue(), (Integer) spin.getValue());
+            //I should instead have size change in logic and then have this call logic - game board should then calllogic
+            //I might need to function calls though if I want everything full seperate
+            gameBoardPanel.SizeChange((Integer) boardSizeInput.getValue());
+//            gameLogic.initGame((Integer) spin.getValue(), (Integer) spin.getValue());
             //there has to be a better way than calling a function that calls a function
         }
     }
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameBoardPanel.updateMoveType(GameLogic.Cell.S);
+            if(gameLogic.getTurn() % 2 == 0) {
+                gameBoardPanel.updateMoveType(GameLogic.Cell.S);
+            }            //maybe I need a set move type too
         }
     }
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameBoardPanel.updateMoveType(GameLogic.Cell.O);
+            if(gameLogic.getTurn() % 2 == 0) {
+                gameBoardPanel.updateMoveType(GameLogic.Cell.O);
+            }
+        }
+    }
+    private class InitiateGameButtonListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            //set button to inative when a player wins
+            //maybe start game can be a popup in the center and have new game always to the side
+            //are you sure you want to start a new game confirmation
+            if(gameLogic.getGameState() == GameLogic.GameState.IDLE) {
+                boardSizeInput.setEnabled(false);
+//                spin.setValue(gameLogic.getBoardSize());
+                initiateGameButton.setText("New Game");
+                gameLogic.startGame((Integer) boardSizeInput.getValue(), (Integer) boardSizeInput.getValue());
+                boardSizeInput.setValue(gameLogic.getBoardDimension());
+                centerPanel.updateTurn();
+            } else if (gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+                boardSizeInput.setEnabled(true);
+                boardSizeInput.setValue(gameLogic.getBoardDimension());
+                initiateGameButton.setText("Start");
+//                gameLogic.initGame(gameLogic.getBoardDimension(), gameLogic.getBoardDimension());
+                gameLogic.initGame(gameLogic.getBoardDimension());
+                gameBoardPanel.SizeChange(gameLogic.getBoardDimension());
+                //press start to being game
+            }
         }
     }
 //    public GameLogic.Cell getMoveType(){

@@ -2,6 +2,7 @@ package sprint2_1.product;
 
 import javax.swing.*;
 import java.awt.*;
+//import sprint2_1.unnamed.jpg;
 
 public class GUI extends JFrame {
 
@@ -11,7 +12,7 @@ public class GUI extends JFrame {
     private RedPlayerPanel redPlayerPanel;
     private CenterPanel centerPanel;
     private GameLogic gameLogic;
-    private GameBoardPanel gameBoardPanel;
+//    private GameBoardPanel gameBoardPanel;
 
 
     public GUI(){
@@ -26,12 +27,15 @@ public class GUI extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
 
         gameLogic = new GameLogic();
-        gameBoardPanel = new GameBoardPanel(gameLogic);
-        centerPanel = new CenterPanel(gameBoardPanel);
-        bluePlayerPanel = new BluePlayerPanel();
-        redPlayerPanel = new RedPlayerPanel(gameBoardPanel, gameLogic);
+//        gameBoardPanel = new GameBoardPanel(gameLogic);
+        //maybe I need to make gameboard panel public within central and just pass central to everyone rather than gameboard
+        //this would allow everyone to access it
+//        centerPanel = new CenterPanel(gameBoardPanel, gameLogic);
+        centerPanel = new CenterPanel(gameLogic);
+        bluePlayerPanel = new BluePlayerPanel(centerPanel, gameLogic);
+        redPlayerPanel = new RedPlayerPanel(centerPanel, gameLogic);
 
-        gameLogic.initGame(3,3);
+        gameLogic.initGame(GameLogic.DEFAULT_DIMENSION);
 
         Container contentPane = getContentPane();
         contentPane.setLayout(new GridBagLayout());
@@ -69,7 +73,7 @@ public class GUI extends JFrame {
         contentPane.add(redPlayerPanel.playerOptionPanel, gbc);
 
         gbc.gridy = -2;
-        gbc.weighty = 1;
+        gbc.weighty = 0;
         contentPane.add(redPlayerPanel.bottomPanel, gbc);
     }
 
@@ -77,7 +81,7 @@ public class GUI extends JFrame {
         //I need to use a component listener for resizing
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new GUI();

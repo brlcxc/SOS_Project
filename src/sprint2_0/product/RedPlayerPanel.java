@@ -22,9 +22,7 @@ public class RedPlayerPanel extends JPanel {
     private GameBoardPanel gameBoardPanel;
     private GameLogic gameLogic;
     private JSpinner spin;
-//    private GameLogic.Cell moveType;
     RedPlayerPanel(GameBoardPanel gameBoardPanel, GameLogic gameLogic) {
-//        this.centerPanel = GUI.centerPanel;
         this.gameBoardPanel = gameBoardPanel;
         this.gameLogic = gameLogic;
         setPlayerOptionPanel();
@@ -88,9 +86,7 @@ public class RedPlayerPanel extends JPanel {
         topPanel.setLayout(new GridBagLayout());
         JLabel sizeLabel = new JLabel("Board size: ");
         spin = new JSpinner(new SpinnerNumberModel(3,3,12,1));
-//        spin.addChangeListener();
 
-        //code taken from stack overflow
         JComponent comp = spin.getEditor();
         JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
         DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
@@ -104,7 +100,6 @@ public class RedPlayerPanel extends JPanel {
 
         gbc.gridx = 1;
         topPanel.add(spin, gbc);
-        //call repaint once actiavted
     }
     private void setBottomPanel(){
         bottomPanel = new JPanel();
@@ -114,14 +109,11 @@ public class RedPlayerPanel extends JPanel {
 
     private class SizeListener implements ChangeListener {
         private SizeListener() {
-            //I need to call a class from gameboard pannel which might be hard
         }
         @Override
         public void stateChanged(ChangeEvent e) {
-//            centerPanel.ChangeGameBoardSize((Integer) spin.getValue());
             gameBoardPanel.SizeChange((Integer) spin.getValue());
             gameLogic.initGame((Integer) spin.getValue(), (Integer) spin.getValue());
-            //there has to be a better way than calling a function that calls a function
         }
     }
     private class SButtonListener implements ActionListener {
@@ -134,7 +126,4 @@ public class RedPlayerPanel extends JPanel {
             gameBoardPanel.updateMoveType(GameLogic.Cell.O);
         }
     }
-//    public GameLogic.Cell getMoveType(){
-//        return moveType;
-//    }
 }
