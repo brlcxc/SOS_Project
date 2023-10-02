@@ -1,4 +1,4 @@
-package sprint2_2.product;
+package sprint2_3.product;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -141,7 +141,7 @@ public class RedPlayerPanel extends JPanel {
         gbc.weighty = 1;
 //        gbc.gridx = 1;
 //        gbc.weightx = 0.2;
-        gbc.weightx = 1.4;
+        gbc.weightx = 1.6;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LAST_LINE_END;
 //        gbc.insets = new Insets(0,0,0,10);
@@ -156,8 +156,8 @@ public class RedPlayerPanel extends JPanel {
 //        bottomPanel.setBackground(Color.BLUE);
         //change y weight to lower down
         //idk why these lines are even needed
-        initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.5), 26));
-        replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.5), 26));
+        initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
+        replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
         System.out.println(replayButton.getWidth() + " " + replayButton.getHeight());
     }
 
