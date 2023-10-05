@@ -1,4 +1,4 @@
-package sprint2_3.product;
+package sprint2_4.product;
 
 public class GameLogic {
     public static int DEFAULT_DIMENSION = 6;
