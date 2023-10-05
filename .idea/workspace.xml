@@ -8,16 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sprint2_3/test/TestBoardSize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOS Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/SOS Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/BluePlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/BluePlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/GameBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/RedPlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/TextFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/RedPlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/test/TestBoardSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestBoardSize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696276981349</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="sprint2_4 commit">
+      <created>1696527569990</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696527569990</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,7 +257,8 @@
     <MESSAGE value="sprint2_0 commit" />
     <MESSAGE value="sprint2_1 commit" />
     <MESSAGE value="sprint2_3 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint2_3 commit" />
+    <MESSAGE value="sprint2_4 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint2_4 commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SOS_Project$sprint2_1.ic" NAME="sprint2_1 Coverage Results" MODIFIED="1696023773117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

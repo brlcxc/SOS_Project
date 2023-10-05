@@ -7,12 +7,11 @@ import static java.lang.Math.min;
 //import sprint2_1.unnamed.jpg;
 
 public class GUI extends JFrame {
-
-    final int WINDOW_WIDTH = 700;
-    final int WINDOW_HEIGHT = 440;
     public BluePlayerPanel bluePlayerPanel;
     public RedPlayerPanel redPlayerPanel;
     public CenterPanel centerPanel;
+    private final int WINDOW_WIDTH = 700;
+    private final int WINDOW_HEIGHT = 440;
     private GameLogic gameLogic;
 
     public GUI(){
@@ -25,7 +24,6 @@ public class GUI extends JFrame {
         System.out.println(redPlayerPanel.topPanel.getWidth());
         System.out.println(bluePlayerPanel.topPanel.getWidth());
         resizeBoard();
-        //pack();
     }
     private void setContentPane(){
         GridBagConstraints gbc = new GridBagConstraints();
@@ -83,9 +81,6 @@ public class GUI extends JFrame {
         int minWidth = min(redPlayerPanel.topPanel.getWidth(), bluePlayerPanel.topPanel.getWidth());
         redPlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
         bluePlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
-        //I need to use a component listener for resizing
-//        System.out.println(redPlayerPanel.topPanel.getWidth());
-//        System.out.println(bluePlayerPanel.topPanel.getWidth());
     }
     public void GameStart(){
         redPlayerPanel.RedPlayerGameStart();
@@ -96,7 +91,6 @@ public class GUI extends JFrame {
     public void GameStop(){
         redPlayerPanel.RedPlayerGameStop();
         bluePlayerPanel.BluePlayerGameStop();
-//        gameLogic.initGame(gameLogic.getBoardDimension());
         gameLogic.initGame();
         centerPanel.updateTurnDisplay();
 

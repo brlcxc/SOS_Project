@@ -39,10 +39,7 @@ public class TestBoardSize {
     //acceptance criteria 1.3
     @Test
     public void changingSizeDuringGame() {
-        //A new game can not be started while the game is currently in play
-        //this prevents the size from being changed
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
         assertFalse("Size illegally changed during game", gameLogic.startGame(GameLogic.DEFAULT_DIMENSION));
     }
-    //is gui not generally ac testing
 }

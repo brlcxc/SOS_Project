@@ -10,28 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RedPlayerPanel extends JPanel {
-    JPanel playerOptionPanel;
-    JPanel topPanel;
-    JPanel bottomPanel;
+    private GameLogic gameLogic;
+    public JPanel playerOptionPanel;
+    public JPanel topPanel;
+    public JPanel bottomPanel;
     private JRadioButton humanOption;
     private JRadioButton computerOption;
     private JRadioButton sOption;
     private JRadioButton oOption;
     private ButtonGroup playerGroup;
     private ButtonGroup moveGroup;
-//    CenterPanel centerPanel;
-//    private GameBoardPanel gameBoardPanel;
-//    private CenterPanel centerPanel;
-    private GameLogic gameLogic;
     private JSpinner boardSizeInput;
     private JButton initiateGameButton;
     private JButton replayButton;
     private GUI gui;
-//    private GameLogic.Cell moveType;
     RedPlayerPanel(GUI gui, GameLogic gameLogic) {
         this.gui = gui;
-//        this.centerPanel = centerPanel;
-//        gameBoardPanel = centerPanel.gameBoardPanel;
         this.gameLogic = gameLogic;
         setPlayerOptionPanel();
         setTopPanel();
@@ -94,9 +88,7 @@ public class RedPlayerPanel extends JPanel {
         topPanel.setLayout(new GridBagLayout());
         JLabel sizeLabel = new JLabel("Board size: ");
         boardSizeInput = new JSpinner(new SpinnerNumberModel(GameLogic.DEFAULT_DIMENSION,GameLogic.BOARD_MIN,GameLogic.BOARD_MAX,1));
-//        spin.addChangeListener();
 
-        //code taken from stack overflow
         JComponent comp = boardSizeInput.getEditor();
         JFormattedTextField field = (JFormattedTextField) comp.getComponent(0);
         DefaultFormatter formatter = (DefaultFormatter) field.getFormatter();
@@ -110,26 +102,15 @@ public class RedPlayerPanel extends JPanel {
 
         gbc.gridx = 1;
         topPanel.add(boardSizeInput, gbc);
-        //call repaint once actiavted
     }
     private void setBottomPanel(){
         GridBagConstraints gbc = new GridBagConstraints();
 
         bottomPanel = new JPanel();
-//        bottomPanel.setBackground(Color.BLUE);
         initiateGameButton = new JButton("Start");
         replayButton = new JButton("Replay");
 
-//        initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.5), 24));
-//        replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.5), 24));
-
         initiateGameButton.addActionListener(new InitiateGameButtonListener());
-
-        //maybe have one button that changes text depening on if the game is ongoing or not
-        //quit or pause button shows up near turn when replay is selected
-        //maybe an increment button while paused too?
-
-        //change new game to start game
 
         bottomPanel.setLayout(new GridBagLayout());
         bottomPanel.setBorder(new EmptyBorder(0,0,10,10));
@@ -141,12 +122,9 @@ public class RedPlayerPanel extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weighty = 1;
-//        gbc.gridx = 1;
-//        gbc.weightx = 0.2;
         gbc.weightx = 1.6;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.LAST_LINE_END;
-//        gbc.insets = new Insets(0,0,0,10);
 
         bottomPanel.add(initiateGameButton, gbc);
         gbc.gridy = -1;
@@ -155,9 +133,7 @@ public class RedPlayerPanel extends JPanel {
         gbc.insets = new Insets(8,0,0,0);
 
         bottomPanel.add(replayButton, gbc);
-//        bottomPanel.setBackground(Color.BLUE);
-        //change y weight to lower down
-        //idk why these lines are even needed
+
         initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
         replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
         System.out.println(replayButton.getWidth() + " " + replayButton.getHeight());
@@ -169,89 +145,41 @@ public class RedPlayerPanel extends JPanel {
     }
     public void RedPlayerGameStart(){
         boardSizeInput.setEnabled(false);
-//                spin.setValue(gameLogic.getBoardSize());
         initiateGameButton.setText("New Game");
-//        gameLogic.startGame((Integer) boardSizeInput.getValue(), (Integer) boardSizeInput.getValue());
-//        boardSizeInput.setValue(gameLogic.getBoardDimension());
-//        centerPanel.updateTurnDisplay();
     }
 
     public void RedPlayerGameStop(){
         boardSizeInput.setEnabled(true);
         boardSizeInput.setValue(gameLogic.getBoardDimension());
         initiateGameButton.setText("Start");
-//                gameLogic.initGame(gameLogic.getBoardDimension(), gameLogic.getBoardDimension());
-//        gameLogic.initGame(gameLogic.getBoardDimension());
-//                gameBoardPanel.SizeChange(gameLogic.getBoardDimension());
-//        centerPanel.updateTurnDisplay();
     }
 
     private class SizeListener implements ChangeListener {
         private SizeListener() {
-            //I need to call a class from gameboard pannel which might be hard
         }
         @Override
         public void stateChanged(ChangeEvent e) {
-//            centerPanel.ChangeGameBoardSize((Integer) spin.getValue());
-            //I should instead have size change in logic and then have this call logic - game board should then calllogic
-            //I might need to function calls though if I want everything full seperate
-//            initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 0.5), 26));
-//        replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 0.5), 26));
             gui.centerPanel.gameBoardPanel.SizeChange((Integer) boardSizeInput.getValue());
             System.out.println("test5");
-//            System.out.println(replayButton.getWidth() + " " + replayButton.getHeight());
-
-//            gameLogic.initGame((Integer) spin.getValue(), (Integer) spin.getValue());
-            //there has to be a better way than calling a function that calls a function
         }
     }
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-//            if(gameLogic.getTurn() % 2 == 0) {
-//                gameBoardPanel.updateMoveType(GameLogic.Cell.S);
-//            }            //maybe I need a set move type too
             gameLogic.updateRedPlayerMove(GameLogic.Cell.S);
         }
     }
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-//            if(gameLogic.getTurn() % 2 == 0) {
-//                gameBoardPanel.updateMoveType(GameLogic.Cell.O);
-//            }
             gameLogic.updateRedPlayerMove(GameLogic.Cell.O);
-
         }
     }
     private class InitiateGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            //set button to inative when a player wins
-            //maybe start game can be a popup in the center and have new game always to the side
-            //are you sure you want to start a new game confirmation
             if(gameLogic.getGameState() == GameLogic.GameState.IDLE) {
                 gui.GameStart();
-//                boardSizeInput.setEnabled(false);
-////                spin.setValue(gameLogic.getBoardSize());
-//                initiateGameButton.setText("New Game");
-//                gameLogic.startGame((Integer) boardSizeInput.getValue(), (Integer) boardSizeInput.getValue());
-//                boardSizeInput.setValue(gameLogic.getBoardDimension());
-//                centerPanel.updateTurnDisplay();
-                //I need these functions moved within GUI
-                //I can also change button color from green to red to reflect a game start
             } else if (gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
                     gui.GameStop();
-//                boardSizeInput.setEnabled(true);
-//                boardSizeInput.setValue(gameLogic.getBoardDimension());
-//                initiateGameButton.setText("Start");
-////                gameLogic.initGame(gameLogic.getBoardDimension(), gameLogic.getBoardDimension());
-//                gameLogic.initGame(gameLogic.getBoardDimension());
-////                gameBoardPanel.SizeChange(gameLogic.getBoardDimension());
-//                centerPanel.updateTurnDisplay();
-                //press start to being game
-                //make button size a ration of red panel
             }
         }
     }
-//    public GameLogic.Cell getMoveType(){
-//        return moveType;
-//    }
 }
