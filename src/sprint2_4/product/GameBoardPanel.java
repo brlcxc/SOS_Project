@@ -12,7 +12,7 @@ public class GameBoardPanel extends JPanel {
     int cellNumber = GameLogic.DEFAULT_DIMENSION;
     private int cellSize = gameBoardSize / cellNumber;
     private int gridWidth = 13 - cellNumber;
-    private int gridWidhtHalf = gridWidth / 2;
+    private int gridWidthHalf = gridWidth / 2;
     private GameLogic gameLogic;
     private boolean moveValidation;
     GameBoardPanel(GUI gui, CenterPanel centerPanel, GameLogic gameLogic){
@@ -27,9 +27,7 @@ public class GameBoardPanel extends JPanel {
                     int rowSelected = e.getY() / cellSize;
                     int colSelected = e.getX() / cellSize;
                     moveValidation = gameLogic.makeMove(rowSelected, colSelected);
-                    System.out.println(rowSelected + " " + colSelected);
-//                }
-                    //make making a move boolean so that I can varify
+//                    System.out.println(rowSelected + " " + colSelected);
                     if(moveValidation){
                         centerPanel.updateTurnDisplay();
                         repaint();
@@ -46,7 +44,7 @@ public void SizeChange(int cellNumber){
 
     if (cellNumber < 13) {
         gridWidth = 13 - cellNumber;
-        gridWidhtHalf = gridWidth / 2;
+        gridWidthHalf = gridWidth / 2;
     }
     setSize(new Dimension(adjustedSize,adjustedSize));
     repaint();
@@ -71,11 +69,11 @@ public void SizeChange(int cellNumber){
         g.fillRoundRect(0, adjustedSize - gridWidth,
                 adjustedSize, gridWidth, gridWidth, gridWidth);
         for (int row = 1; row < cellNumber; row++) {
-            g.fillRoundRect(0, cellSize * row - gridWidhtHalf,
+            g.fillRoundRect(0, cellSize * row - gridWidthHalf,
                     adjustedSize-1, gridWidth, gridWidth, gridWidth);
         }
         for (int col = 1; col < cellNumber; col++) {
-            g.fillRoundRect(cellSize * col - gridWidhtHalf, 0,
+            g.fillRoundRect(cellSize * col - gridWidthHalf, 0,
                     gridWidth, adjustedSize-1, gridWidth, gridWidth);
         }
     }

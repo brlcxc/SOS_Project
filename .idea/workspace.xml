@@ -8,8 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestGameModeSelection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestGameStart.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestGeneralGameMove.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestSimpleGameMove.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_3/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_3/product/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/BluePlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/BluePlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/CenterPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/GameBoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/GameLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sprint2_4/product/RedPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/product/RedPlayerPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sprint2_4/test/TestBoardSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint2_4/test/TestBoardSize.java" afterDir="false" />
     </list>
@@ -46,17 +55,11 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Sprint2_3">
-    <configuration name="Sprint2_3" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="sprint2_3.product.GUI" />
-      <module name="SOS Project" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.sprint2_4">
     <configuration name="sprint0_0" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sprint0_0.product.GUI" />
       <module name="SOS Project" />
@@ -99,6 +102,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="sprint2_3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sprint2_3.product.GUI" />
+      <module name="SOS Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sprint2_4" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sprint2_4.product.GUI" />
+      <module name="SOS Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestBoardSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SOS Project" />
       <extension name="coverage">
@@ -120,7 +137,8 @@
       <item itemvalue="Application.sprint2_0" />
       <item itemvalue="Application.sprint2_1" />
       <item itemvalue="Application.sprint2_2" />
-      <item itemvalue="Application.Sprint2_3" />
+      <item itemvalue="Application.sprint2_3" />
+      <item itemvalue="Application.sprint2_4" />
       <item itemvalue="Application.sprint0_0" />
       <item itemvalue="JUnit.TestBoardSize" />
     </list>
@@ -237,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696527569990</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="sprint2_4 commit">
+      <created>1696547858380</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1696547858380</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

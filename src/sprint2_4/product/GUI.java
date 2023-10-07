@@ -103,12 +103,4 @@ public class GUI extends JFrame {
             }
         });
     }
-
-
-
-    //maybe I need to pass GUI to everything so that I can have better global calls for state change
-    //from that I can have state change functions that are called for each one
 }
-//how to make the bad sound effect like clicking off
-//do we only show user story those we need to work on
-//add more

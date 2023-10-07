@@ -41,19 +41,13 @@ public class CenterPanel extends JPanel {
     public void updateTurnDisplay(){
         if(gameLogic.getTurn() == 0){
             turnInfo.setText("Press \"Start\" to begin");
-//            turnInfo.setForeground(Color.BLACK);
         }
         else if(gameLogic.getBluePlayerTurn()) {
-//            turnInfo.setText("Player1 Turn: " + gameLogic.getTurn());
             turnInfo.setText("Player1 Turn");
-//            turnInfo.setForeground(Color.BLUE);
         }
         else if(gameLogic.getRedPlayerTurn()){
-//            turnInfo.setText("Player2 Turn: " + gameLogic.getTurn());
             turnInfo.setText("Player2 Turn");
-//            turnInfo.setForeground(Color.RED);
         }
         repaint();
-        //turn 7: Player2's move
     }
 }

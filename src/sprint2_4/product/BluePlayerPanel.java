@@ -12,14 +12,16 @@ public class BluePlayerPanel {
     public JPanel bottomPanel;
     private JRadioButton simpleGame;
     private JRadioButton generalGame;
+    private JRadioButton humanOption;
+    private JRadioButton computerOption;
+    private JRadioButton sOption;
+    private JRadioButton oOption;
     private JCheckBox recordOption;
     private GameLogic gameLogic;
-//    private GameBoardPanel gameBoardPanel;
     private GUI gui;
     BluePlayerPanel(GUI gui, GameLogic gameLogic) {
         this.gui = gui;
         this.gameLogic = gameLogic;
-//        gameBoardPanel = centerPanel.gameBoardPanel;
 
         setPlayerOptionPanel();
         setTopPanel();
@@ -31,10 +33,10 @@ public class BluePlayerPanel {
 
         playerOptionPanel = new JPanel();
 
-        JRadioButton humanOption = new JRadioButton("Human");
-        JRadioButton computerOption = new JRadioButton("Computer");
-        JRadioButton sOption = new JRadioButton("S");
-        JRadioButton oOption = new JRadioButton("O");
+        humanOption = new JRadioButton("Human");
+        computerOption = new JRadioButton("Computer");
+        sOption = new JRadioButton("S");
+        oOption = new JRadioButton("O");
         recordOption = new JCheckBox("Record Game");
 
         sOption.addActionListener(new SButtonListener());
@@ -137,23 +139,23 @@ public class BluePlayerPanel {
     }
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateBluePlayerMove(GameLogic.Cell.S);
+            gameLogic.setBluePlayerMove(GameLogic.Cell.S);
         }
     }
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateBluePlayerMove(GameLogic.Cell.O);
+            gameLogic.setBluePlayerMove(GameLogic.Cell.O);
 
         }
     }
     private class SimpleGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateGameMode(GameLogic.GameMode.SIMPLE);
+            gameLogic.setGameMode(GameLogic.GameMode.SIMPLE);
         }
     }
     private class GeneralGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateGameMode(GameLogic.GameMode.GENERAL);
+            gameLogic.setGameMode(GameLogic.GameMode.GENERAL);
         }
     }
     private class HumanButtonListener implements ActionListener {

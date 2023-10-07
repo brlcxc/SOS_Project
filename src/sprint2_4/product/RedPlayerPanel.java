@@ -10,16 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RedPlayerPanel extends JPanel {
-    private GameLogic gameLogic;
     public JPanel playerOptionPanel;
     public JPanel topPanel;
     public JPanel bottomPanel;
+    private GameLogic gameLogic;
     private JRadioButton humanOption;
     private JRadioButton computerOption;
     private JRadioButton sOption;
     private JRadioButton oOption;
-    private ButtonGroup playerGroup;
-    private ButtonGroup moveGroup;
     private JSpinner boardSizeInput;
     private JButton initiateGameButton;
     private JButton replayButton;
@@ -45,11 +43,11 @@ public class RedPlayerPanel extends JPanel {
         sOption.addActionListener(new SButtonListener());
         oOption.addActionListener(new OButtonListener());
 
-        playerGroup = new ButtonGroup();
+        ButtonGroup playerGroup = new ButtonGroup();
         playerGroup.add(humanOption);
         playerGroup.add(computerOption);
 
-        moveGroup = new ButtonGroup();
+        ButtonGroup moveGroup = new ButtonGroup();
         moveGroup.add(sOption);
         moveGroup.add(oOption);
 
@@ -136,7 +134,6 @@ public class RedPlayerPanel extends JPanel {
 
         initiateGameButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
         replayButton.setPreferredSize(new Dimension((int) (bottomPanel.getWidth() * 1.6), 26));
-        System.out.println(replayButton.getWidth() + " " + replayButton.getHeight());
     }
 
     public void updateButtonSize(){}
@@ -165,12 +162,12 @@ public class RedPlayerPanel extends JPanel {
     }
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateRedPlayerMove(GameLogic.Cell.S);
+            gameLogic.setRedPlayerMove(GameLogic.Cell.S);
         }
     }
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.updateRedPlayerMove(GameLogic.Cell.O);
+            gameLogic.setRedPlayerMove(GameLogic.Cell.O);
         }
     }
     private class InitiateGameButtonListener implements ActionListener {

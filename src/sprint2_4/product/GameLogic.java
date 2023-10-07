@@ -17,9 +17,7 @@ public class GameLogic {
     private Cell redPlayerMove;
     public enum GameState {
         IDLE, PLAYING, DRAW, BLUE_WON, RED_WON
-        //closing popup switches out of in state
     }
-    //game board covered with who won after the game is complete
 
     private GameState currentGameState;
     public enum GameMode{
@@ -28,6 +26,9 @@ public class GameLogic {
     private GameMode selectedGameMode;
 
     public GameLogic(){
+        selectedGameMode = GameMode.SIMPLE;
+        totalRows = DEFAULT_DIMENSION;
+        totalColumns = DEFAULT_DIMENSION;
     }
 
     public void initGame() {
@@ -44,7 +45,7 @@ public class GameLogic {
         }
     }
     public Boolean startGame(int boardDimension) {
-        if (currentGameState != GameState.PLAYING && boardDimension >= BOARD_MIN && boardDimension <= BOARD_MAX) {
+        if (currentGameState != GameState.PLAYING && verifyBoardInputSize(boardDimension)) {
             totalRows = boardDimension;
             totalColumns = boardDimension;
             grid = new Cell[totalRows][totalColumns];
@@ -55,40 +56,62 @@ public class GameLogic {
         }
         return false;
     }
-    boolean makeMove(int row, int column){
-        if (grid[row][column] != Cell.EMPTY || row >= totalColumns || column >= totalColumns){
+    public boolean makeMove(int row, int column){
+        if (row < totalRows && column < totalColumns) {
+            if (grid[row][column] == Cell.EMPTY && currentGameState == GameState.PLAYING) {
+                if (selectedGameMode == GameMode.SIMPLE) {
+                    if (bluePlayerTurn) {
+                        grid[row][column] = bluePlayerMove;
+                        bluePlayerTurn = false;
+                        redPlayerTurn = true;
+                    } else {
+                        grid[row][column] = redPlayerMove;
+                        bluePlayerTurn = true;
+                        redPlayerTurn = false;
+                    }
+                    turn++;
+                    return true;
+                } else if (selectedGameMode == GameMode.GENERAL) {
+                    if (bluePlayerTurn && CombinationMade()) {
+                        grid[row][column] = bluePlayerMove;
+                    } else if (bluePlayerTurn) {
+                        grid[row][column] = bluePlayerMove;
+                        bluePlayerTurn = false;
+                        redPlayerTurn = true;
+                        turn++;
+                    } else if (redPlayerTurn && CombinationMade()) {
+                        grid[row][column] = bluePlayerMove;
+                    } else if (redPlayerTurn) {
+                        grid[row][column] = bluePlayerMove;
+                        bluePlayerTurn = false;
+                        redPlayerTurn = true;
+                        turn++;
+                    }
+                    return true;
+                }
+            }
             return false;
         }
-        else if (currentGameState == GameState.PLAYING) {
-//            if(turn % 2 != 0) {
-//                grid[row][column] = bluePlayerMove;
-//            }
-//            else{
-//                grid[row][column] = redPlayerMove;
-//            }
-            if(bluePlayerTurn) {
-                grid[row][column] = bluePlayerMove;
-                bluePlayerTurn = false;
-                redPlayerTurn = true;
-            }
-            else{
-                grid[row][column] = redPlayerMove;
-                bluePlayerTurn = true;
-                redPlayerTurn = false;
-            }
-            turn++;
+        return false;
+    }
+    public Boolean CombinationMade(){
+        return false;
+    }
+    private Boolean verifyBoardInputSize(int boardDimension){
+        if (boardDimension >= BOARD_MIN && boardDimension <= BOARD_MAX) {
             return true;
         }
         return false;
-        //maybe a center popup saying select board size and game type
     }
-    public void updateGameMode(GameMode selectedGameMode){
-        this.selectedGameMode = selectedGameMode;
+    public void setGameMode(GameMode selectedGameMode){
+        if (currentGameState != GameState.PLAYING) {
+            this.selectedGameMode = selectedGameMode;
+        }
     }
-    public void updateRedPlayerMove(Cell redPlayerMove){
+    public void setRedPlayerMove(Cell redPlayerMove){
         this.redPlayerMove = redPlayerMove;
     }
-    public void updateBluePlayerMove(Cell bluePlayerMove){
+    public void setBluePlayerMove(Cell bluePlayerMove){
         this.bluePlayerMove = bluePlayerMove;
     }
     public int getTurn(){
@@ -115,5 +138,7 @@ public class GameLogic {
     public GameState getGameState() {
         return currentGameState;
     }
+    public GameMode getGameMode() {
+        return selectedGameMode;
+    }
 }
-//marron and navy blue pallet

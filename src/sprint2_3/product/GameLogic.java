@@ -7,6 +7,7 @@ public class GameLogic {
     private int totalRows;
     private int totalColumns;
     private int turn;
+
     public enum Cell {
         EMPTY, S, O
     }
