@@ -18,8 +18,9 @@ public class CenterPanel extends JPanel {
         this.gameLogic = gameLogic;
 
         JLabel title = new JLabel("SOS");
-        title.setFont(new Font("SansSerif", 1, 34));
         turnInfo = new JLabel("Press \"Start\" to begin");
+
+        title.setFont(new Font("SansSerif", 1, 34));
 
         gbc.insets = new Insets(10,10,0,10);
         gbc.gridx = 0;
@@ -38,6 +39,8 @@ public class CenterPanel extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         add(turnInfo, gbc);
     }
+
+    //displays text at bottom indicating the player trun
     public void updateTurnDisplay(){
         if(gameLogic.getTurn() == 0){
             turnInfo.setText("Press \"Start\" to begin");

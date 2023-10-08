@@ -122,46 +122,48 @@ public class BluePlayerPanel {
         bottomPanel.add(recordOption, BorderLayout.SOUTH);
     }
     public void BluePlayerGameStart(){
-//        humanOption.setEnabled(false);
-//        computerOption.setEnabled(false);
+        //potential implementation in future where computer disables s and o and makes them invisible
         simpleGame.setEnabled(false);
         generalGame.setEnabled(false);
         recordOption.setEnabled(false);
     }
 
     public void BluePlayerGameStop(){
-//        humanOption.setEnabled(true);
-//        computerOption.setEnabled(true);
-        //maybe make s and o only visable if human option is selected
         simpleGame.setEnabled(true);
         generalGame.setEnabled(true);
         recordOption.setEnabled(true);
     }
+    //Sets the current blue player move to S
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             gameLogic.setBluePlayerMove(GameLogic.Cell.S);
         }
     }
+    //Sets the current blue player move to S
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             gameLogic.setBluePlayerMove(GameLogic.Cell.O);
 
         }
     }
+    //Calls the logic method to set game mode to SIMPLE
     private class SimpleGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             gameLogic.setGameMode(GameLogic.GameMode.SIMPLE);
         }
     }
+    //Calls the logic method to set game mode to GENERAL
     private class GeneralGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             gameLogic.setGameMode(GameLogic.GameMode.GENERAL);
         }
     }
+    //Not fully in use yet
     private class HumanButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         }
     }
+    //Not fully in use yet
     private class ComputerButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
         }

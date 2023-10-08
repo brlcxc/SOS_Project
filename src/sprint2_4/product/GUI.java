@@ -77,17 +77,23 @@ public class GUI extends JFrame {
         redPlayerPanel.updateButtonSize();
     }
 
+    //adjusts the size of both panels to make them an even width
     private void resizeBoard() {
         int minWidth = min(redPlayerPanel.topPanel.getWidth(), bluePlayerPanel.topPanel.getWidth());
         redPlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
         bluePlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
     }
+
+    //start method public to all other gui classes
+    //calls start method in other gui classes
     public void GameStart(){
         redPlayerPanel.RedPlayerGameStart();
         bluePlayerPanel.BluePlayerGameStart();
         gameLogic.startGame(redPlayerPanel.getBoardSizeInput());
         centerPanel.updateTurnDisplay();
     }
+    //stop method public to all other gui classes
+    //calls stop method in other gui classes
     public void GameStop(){
         redPlayerPanel.RedPlayerGameStop();
         bluePlayerPanel.BluePlayerGameStop();

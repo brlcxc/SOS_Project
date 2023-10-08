@@ -4,8 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import sprint2_4.product.GameLogic;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class TestBoardSize {
     private GameLogic gameLogic;
@@ -30,16 +29,21 @@ public class TestBoardSize {
         int overMaxSize = 13;
         int underMinSize = 2;
 
-        assertFalse("Illegal board size exceeds limit of 12", gameLogic.startGame(overMaxSize));
-        assertFalse("Illegal board size under limit of 3", gameLogic.startGame(underMinSize));
+        gameLogic.startGame(overMaxSize);
+        assertNotEquals("Illegal board size exceeds limit of 12", overMaxSize,gameLogic.getTotalRows());
+        assertNotEquals("Illegal board size exceeds limit of 12", overMaxSize,gameLogic.getTotalColumns());
+        gameLogic.startGame(underMinSize);
+        assertNotEquals("Illegal board size under limit of 3", underMinSize,gameLogic.getTotalRows());
+        assertNotEquals("Illegal board size under limit of 3", underMinSize,gameLogic.getTotalColumns());
 
     }
 
     //acceptance criteria 1.3
     @Test
     public void testChangingSizeDuringGame() {
+        gameLogic.startGame(8);
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
-        //the size is not changed with the new start since the game is already in play
-        assertFalse("Size illegally changed during game", gameLogic.startGame(GameLogic.DEFAULT_DIMENSION));
-    }
+
+        assertEquals("Column size does not match input",8, gameLogic.getTotalColumns());
+        assertEquals("Row size does not match input",8, gameLogic.getTotalColumns());    }
 }

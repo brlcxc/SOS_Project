@@ -60,4 +60,3 @@ public class TestSimpleGameMove {
         assertFalse("Move not properly validated", gameLogic.makeMove(row,column));
     }
 }
-//making move before game starts

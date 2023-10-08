@@ -19,6 +19,7 @@ public class TestGameModeSelection {
     public void testSimpleGameSelection() {
         gameLogic.setGameMode(GameLogic.GameMode.SIMPLE);
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
+        assertEquals("Game mode does not match Simple",GameLogic.GameMode.SIMPLE, gameLogic.getGameMode());
     }
 
     //acceptance criteria 2.2

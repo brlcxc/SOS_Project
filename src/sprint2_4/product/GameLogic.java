@@ -31,12 +31,15 @@ public class GameLogic {
         totalColumns = DEFAULT_DIMENSION;
     }
 
+    //Idle is the state used both before and after a game
+    //Note: Might need to be refactored
     public void initGame() {
         currentGameState = GameState.IDLE;
         bluePlayerTurn = true;
         redPlayerTurn = false;
         turn = 0;
     }
+    //empties the board
     public void setupBoard(){
         for (int row = 0; row < totalRows; ++row) {
             for (int col = 0; col < totalColumns; ++col) {
@@ -44,6 +47,8 @@ public class GameLogic {
             }
         }
     }
+
+    //returns boolean value indicating if the game was successfully started
     public Boolean startGame(int boardDimension) {
         if (currentGameState != GameState.PLAYING && verifyBoardInputSize(boardDimension)) {
             totalRows = boardDimension;
@@ -56,9 +61,12 @@ public class GameLogic {
         }
         return false;
     }
+
+    //returns boolean value indicating if the move was successfully made
     public boolean makeMove(int row, int column){
         if (row < totalRows && column < totalColumns) {
             if (grid[row][column] == Cell.EMPTY && currentGameState == GameState.PLAYING) {
+                //Different rules applied based on game mode
                 if (selectedGameMode == GameMode.SIMPLE) {
                     if (bluePlayerTurn) {
                         grid[row][column] = bluePlayerMove;
@@ -94,6 +102,8 @@ public class GameLogic {
         }
         return false;
     }
+
+    //This will be implemented in future sprints
     public Boolean CombinationMade(){
         return false;
     }

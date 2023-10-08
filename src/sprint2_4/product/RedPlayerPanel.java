@@ -170,12 +170,14 @@ public class RedPlayerPanel extends JPanel {
             gameLogic.setRedPlayerMove(GameLogic.Cell.O);
         }
     }
+
+    //start button calls the global start
     private class InitiateGameButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             if(gameLogic.getGameState() == GameLogic.GameState.IDLE) {
                 gui.GameStart();
             } else if (gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
-                    gui.GameStop();
+                gui.GameStop();
             }
         }
     }
