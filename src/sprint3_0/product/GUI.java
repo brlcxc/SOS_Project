@@ -7,9 +7,15 @@ import static java.lang.Math.min;
 //import sprint2_1.unnamed.jpg;
 
 public class GUI extends JFrame {
-    public BluePlayerPanel bluePlayerPanel;
-    public RedPlayerPanel redPlayerPanel;
-    public CenterPanel centerPanel;
+//    private BluePlayerPanel bluePlayerPanel;
+    private LeftTopPanel leftTopPanel;
+    private LeftPlayerPanel leftPlayerPanel;
+    private LeftBottomPanel leftBottomPanel;
+    private RightTopPanel rightTopPanel;
+    private RightPlayerPanel rightPlayerPanel;
+    private RightBottomPanel rightBottomPanel;
+//    private RedPlayerPanel redPlayerPanel;
+    private CenterPanel centerPanel;
     private final int WINDOW_WIDTH = 700;
     private final int WINDOW_HEIGHT = 440;
     private GameLogic gameLogic;
@@ -21,8 +27,6 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("SOS");
         setVisible(true);
-        System.out.println(redPlayerPanel.topPanel.getWidth());
-        System.out.println(bluePlayerPanel.topPanel.getWidth());
         resizeBoard();
     }
     private void setContentPane(){
@@ -30,9 +34,14 @@ public class GUI extends JFrame {
 
         gameLogic = new GameLogic();
         centerPanel = new CenterPanel(this, gameLogic);
-        bluePlayerPanel = new BluePlayerPanel(this, gameLogic);
-        redPlayerPanel = new RedPlayerPanel(this, gameLogic);
-
+//        bluePlayerPanel = new BluePlayerPanel(this, gameLogic);
+        leftTopPanel = new LeftTopPanel(gameLogic);
+        leftPlayerPanel = new LeftPlayerPanel(gameLogic);
+        leftBottomPanel = new LeftBottomPanel(gameLogic);
+//        redPlayerPanel = new RedPlayerPanel(this, gameLogic);
+        rightTopPanel = new RightTopPanel(gameLogic);
+        rightPlayerPanel = new RightPlayerPanel(gameLogic);
+        rightBottomPanel = new RightBottomPanel(gameLogic, this);
         gameLogic.initGame();
 
         Container contentPane = getContentPane();
@@ -43,15 +52,15 @@ public class GUI extends JFrame {
         gbc.weightx = 0.27;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weighty = 1;
-        contentPane.add(bluePlayerPanel.topPanel, gbc);
+        contentPane.add(leftTopPanel, gbc);
 
         gbc.gridy = -1;
         gbc.weighty = 0;
-        contentPane.add(bluePlayerPanel.playerOptionPanel, gbc);
+        contentPane.add(leftPlayerPanel, gbc);
 
         gbc.gridy = -2;
         gbc.weighty = 1;
-        contentPane.add(bluePlayerPanel.bottomPanel, gbc);
+        contentPane.add(leftBottomPanel, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -63,43 +72,58 @@ public class GUI extends JFrame {
         gbc.gridheight = 1;
         gbc.weightx = 0.27;
         gbc.anchor = GridBagConstraints.LAST_LINE_END;
-        contentPane.add(redPlayerPanel.topPanel, gbc);
+        contentPane.add(rightTopPanel, gbc);
 
         gbc.gridy = -1;
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.LAST_LINE_END;
-        contentPane.add(redPlayerPanel.playerOptionPanel, gbc);
+        contentPane.add(rightPlayerPanel, gbc);
 
         gbc.gridy = -2;
         gbc.weighty = 0;
-        contentPane.add(redPlayerPanel.bottomPanel, gbc);
+        contentPane.add(rightBottomPanel, gbc);
 
-        redPlayerPanel.updateButtonSize();
+//        bottomRightPanel.updateButtonSize();
     }
 
     //adjusts the size of both panels to make them an even width
     private void resizeBoard() {
-        int minWidth = min(redPlayerPanel.topPanel.getWidth(), bluePlayerPanel.topPanel.getWidth());
-        redPlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
-        bluePlayerPanel.topPanel.setSize(new Dimension(minWidth, redPlayerPanel.topPanel.getHeight()));
+        int minWidth = min(rightTopPanel.getWidth(), leftTopPanel.getWidth());
+        rightTopPanel.setSize(new Dimension(minWidth, rightTopPanel.getHeight()));
+        leftTopPanel.setSize(new Dimension(minWidth, rightTopPanel.getHeight()));
     }
 
     //start method public to all other gui classes
     //calls start method in other gui classes
     public void GameStart(){
-        redPlayerPanel.RedPlayerGameStart();
-        bluePlayerPanel.BluePlayerGameStart();
-        gameLogic.startGame(redPlayerPanel.getBoardSizeInput());
+//        redPlayerPanel.RedPlayerGameStart();
+//        bluePlayerPanel.BluePlayerGameStart();
+        leftTopPanel.GameStart();
+        leftPlayerPanel.GameStart();
+        leftBottomPanel.GameStart();
+        rightTopPanel.GameStart();
+        rightPlayerPanel.GameStart();
+        rightBottomPanel.GameStart();
+        gameLogic.startGame(rightTopPanel.getBoardSizeInput());
         centerPanel.updateTurnDisplay();
     }
     //stop method public to all other gui classes
     //calls stop method in other gui classes
     public void GameStop(){
-        redPlayerPanel.RedPlayerGameStop();
-        bluePlayerPanel.BluePlayerGameStop();
+//        redPlayerPanel.RedPlayerGameStop();
+//        bluePlayerPanel.BluePlayerGameStop();
+        leftTopPanel.GameStop();
+        leftPlayerPanel.GameStop();
+        leftBottomPanel.GameStop();
+        rightTopPanel.GameStop();
+        rightPlayerPanel.GameStop();
+        rightBottomPanel.GameStop();
         gameLogic.initGame();
         centerPanel.updateTurnDisplay();
 
+    }
+    public CenterPanel getCenterPanel(){
+        return centerPanel;
     }
 
     public static void main(String[] args) {
@@ -110,3 +134,5 @@ public class GUI extends JFrame {
         });
     }
 }
+
+//mmaybe make top cent and top bottom pannels to further space everything out

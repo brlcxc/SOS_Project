@@ -18,6 +18,8 @@ public class GameLogic {
     public enum GameState {
         IDLE, PLAYING, DRAW, BLUE_WON, RED_WON
     }
+    //create an enum for player that can be passed?
+    //then modify the set move functions acordingly
 
     private GameState currentGameState;
     public enum GameMode{
@@ -106,6 +108,24 @@ public class GameLogic {
     //This will be implemented in future sprints
     public Boolean CombinationMade(){
         return false;
+        //how to prevent search a cell that doesn't exist
+        //have a size verification when checking?
+
+        //if s
+        //search surrounding cells for o in clockwise direction
+        //if o found search one more in the same direction for s
+        //if s found mark original cell with flag
+
+        //mark cell and include info on final cell?
+        //or mark the cardinal direction
+        //it should be able to differentiate where to go between s and o with cardinal
+
+        //if o
+        //search cells on outsides of the o in clockwise for half a circle
+        //if the outer sides both equal s then mark the original cell
+
+        //I shouldn't have to worry about duplicate flags since there is only a flag when a move is made
+        //instead of hvaing both a flag syang move placement I will just have the directional flags and null
     }
     private Boolean verifyBoardInputSize(int boardDimension){
         if (boardDimension >= BOARD_MIN && boardDimension <= BOARD_MAX) {
