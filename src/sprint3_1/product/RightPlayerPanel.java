@@ -1,17 +1,17 @@
-package sprint3_0.product;
+package sprint3_1.product;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LeftPlayerPanel extends JPanel {
+public class RightPlayerPanel extends JPanel{
     private GameLogic gameLogic;
     private JRadioButton humanOption;
     private JRadioButton computerOption;
     private JRadioButton sOption;
     private JRadioButton oOption;
-    LeftPlayerPanel(GameLogic gameLogic){
+    RightPlayerPanel(GameLogic gameLogic){
         this.gameLogic = gameLogic;
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -38,8 +38,8 @@ public class LeftPlayerPanel extends JPanel {
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-        gbc.anchor = GridBagConstraints.LAST_LINE_START;
-        add(new JLabel("Player1"), gbc);
+        gbc.anchor = GridBagConstraints.EAST;
+        add(new JLabel("Player2"), gbc);
 
         gbc.insets = new Insets(5,10,5,10);
         gbc.gridy = -1;
@@ -59,17 +59,14 @@ public class LeftPlayerPanel extends JPanel {
         humanOption.doClick();
         sOption.doClick();
     }
-    //Sets the current blue player move to S
     private class SButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.setBluePlayerMove(GameLogic.Cell.S);
+            gameLogic.setRedPlayerMove(GameLogic.Cell.S);
         }
     }
-    //Sets the current blue player move to S
     private class OButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            gameLogic.setBluePlayerMove(GameLogic.Cell.O);
-
+            gameLogic.setRedPlayerMove(GameLogic.Cell.O);
         }
     }
     //Not fully in use yet
@@ -88,5 +85,3 @@ public class LeftPlayerPanel extends JPanel {
     public void GameStop(){
     }
 }
-
-//maybe just have the button listners change the color of the other players button
