@@ -82,7 +82,8 @@ public class LeftPlayerPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
         }
     }
-    public void GameStart(){
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
     }
 
     public void GameStop(){

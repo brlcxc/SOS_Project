@@ -17,44 +17,17 @@ public class GameBoardPanel extends JPanel {
     private int symbolStrokeWidth = gridWidth;
     private GameLogic gameLogic;
     private boolean moveValidation;
+    private CenterPanel centerPanel;
+    private Mouse mouse;
     GameBoardPanel(GUI gui, CenterPanel centerPanel, GameLogic gameLogic){
+        this.centerPanel = centerPanel;
         this.gameLogic = gameLogic;
 
         setPreferredSize(new Dimension(gameBoardSize, gameBoardSize));
         SizeChange(cellNumber);
 
-        //activates when the user clicks on the game board
-        addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                if (gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
-                    int rowSelected = e.getY() / cellSize;
-                    int colSelected = e.getX() / cellSize;
-
-                    //If legal the move is made within makeMove()
-                    //makeRow() returns false if the move has not been made
-                    //Turn and player information is not updated unless the move is legal
-                    moveValidation = gameLogic.makeMove(rowSelected, colSelected);
-                    if(moveValidation){
-                        //maybe update here as well to say who won?
-                        //or "press start to play again"
-                        centerPanel.updateTurnDisplay();
-                         if(gameLogic.getGameState() == GameLogic.GameState.BLUE_WON){
-//                             JOptionPane.showMessageDialog(null,"blue won","Title",JOptionPane.PLAIN_MESSAGE);
-//                             gui.GameStop();
-                         }
-                         else if(gameLogic.getGameState() == GameLogic.GameState.RED_WON){
-//                             JOptionPane.showMessageDialog(null,"red won","Title",JOptionPane.PLAIN_MESSAGE);
-                         }
-                         else if(gameLogic.getGameState() == GameLogic.GameState.DRAW){
-//                             JOptionPane.showMessageDialog(null,"draw","Title",JOptionPane.PLAIN_MESSAGE);
-                         }
-                         else{
-                             repaint();
-                         }
-                    }
-                }
-            }
-        });
+        mouse = new Mouse(this);
+        addMouseListener(mouse);
     }
 
     //Board size change method
@@ -82,9 +55,6 @@ public class GameBoardPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGridLines(g);
-//        if(gameLogic.getGameState() == GameLogic.GameState.PLAYING){
-//            drawBoard(g);
-//        }
         if(gameLogic.getGameState() != GameLogic.GameState.IDLE){
             drawBoard(g);
         }
@@ -120,16 +90,6 @@ public class GameBoardPanel extends JPanel {
         Font font = new Font("SansSerif",Font.BOLD, (int) (0.8 * cellSize));
         FontMetrics metrics = g.getFontMetrics(font);
         g.setFont(font);
-
-//        int x1 = col * CELL_SIZE + CELL_PADDING;
-//        int y1 = row * CELL_SIZE + CELL_PADDING;
-//        if (game.getCell(row, col) == Cell.CROSS) {
-//            g2d.setColor(Color.RED);
-//            int x2 = (col + 1) * CELL_SIZE - CELL_PADDING;
-//            int y2 = (row + 1) * CELL_SIZE - CELL_PADDING;
-//            g2d.drawLine(x1, y1, x2, y2);
-//            g2d.drawLine(x2, y1, x1, y2);
-        //I can convert the index to something in sign or cosin to figure how far to go out
 
         //Searches the entire array and places a piece in each game board cell associated with an array cell
         for (int row = 0; row < gameLogic.getTotalRows(); ++row) {
@@ -180,6 +140,90 @@ public class GameBoardPanel extends JPanel {
                             g2d.setColor(Color.BLACK);
                         }
                     }
+                }
+            }
+        }
+    }
+    public void GameStart(GameLogic gameLogic){
+//        this.gameLogic = null;
+        System.out.println("crun");
+        this.gameLogic = gameLogic;
+//        mouse.addInstance(gameLogic);
+    }
+    private class Mouse extends MouseAdapter{
+        private GameBoardPanel gameBoardPanel;
+        Mouse(GameBoardPanel gameBoardPanel){
+            this.gameBoardPanel = gameBoardPanel;
+        }
+//        public void addInstance(GameLogic newGameLogic){
+//            this.newGameLogic = newGameLogic;
+//            System.out.println("check");
+//        }
+        public void mouseClicked(MouseEvent e) {
+            gameBoardPanel.test(e.getX(), e.getY());
+            //maybe it is not being counted as playing right?
+//                gameLogic = gui.getGameLogic();
+//            System.out.println("test5");
+//            if(newGameLogic.getGameState() == GameLogic.GameState.IDLE){
+//                System.out.println("help4");
+//            }
+//            if (newGameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+//                System.out.println("test4");
+//                int rowSelected = e.getY() / cellSize;
+//                int colSelected = e.getX() / cellSize;
+//
+//                //If legal the move is made within makeMove()
+//                //makeRow() returns false if the move has not been made
+//                //Turn and player information is not updated unless the move is legal
+//                moveValidation = newGameLogic.makeMove(rowSelected, colSelected);
+//                //it's possible the old instance is still being used
+//                if(moveValidation){
+//                    //maybe update here as well to say who won?
+//                    //or "press start to play again"
+//                    centerPanel.updateTurnDisplay();
+//                    if(newGameLogic.getGameState() == GameLogic.GameState.BLUE_WON){
+////                             JOptionPane.showMessageDialog(null,"blue won","Title",JOptionPane.PLAIN_MESSAGE);
+////                             gui.GameStop();
+//                    }
+//                    else if(newGameLogic.getGameState() == GameLogic.GameState.RED_WON){
+////                             JOptionPane.showMessageDialog(null,"red won","Title",JOptionPane.PLAIN_MESSAGE);
+//                    }
+//                    else if(newGameLogic.getGameState() == GameLogic.GameState.DRAW){
+////                             JOptionPane.showMessageDialog(null,"draw","Title",JOptionPane.PLAIN_MESSAGE);
+//                    }
+//                    else{
+//                        repaint();
+//                    }
+                }
+            }
+    public void test(int x, int y) {
+        if (gameLogic.getGameState() == GameLogic.GameState.IDLE) {
+            System.out.println("help56");
+        }
+        if (gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+            System.out.println("test42");
+            int rowSelected = y / cellSize;
+            int colSelected = x / cellSize;
+
+            //If legal the move is made within makeMove()
+            //makeRow() returns false if the move has not been made
+            //Turn and player information is not updated unless the move is legal
+            moveValidation = gameLogic.makeMove(rowSelected, colSelected);
+            //it's possible the old instance is still being used
+            if (moveValidation) {
+                //maybe update here as well to say who won?
+                //or "press start to play again"
+                centerPanel.updateTurnDisplay();
+                if (gameLogic.getGameState() == GameLogic.GameState.BLUE_WON) {
+                    System.out.println("cran");
+//                             JOptionPane.showMessageDialog(null,"blue won","Title",JOptionPane.PLAIN_MESSAGE);
+//                             gui.GameStop();
+                } else if (gameLogic.getGameState() == GameLogic.GameState.RED_WON) {
+//                             JOptionPane.showMessageDialog(null,"red won","Title",JOptionPane.PLAIN_MESSAGE);
+                } else if (gameLogic.getGameState() == GameLogic.GameState.DRAW) {
+//                             JOptionPane.showMessageDialog(null,"draw","Title",JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    repaint();
                 }
             }
         }

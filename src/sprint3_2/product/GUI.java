@@ -1,5 +1,7 @@
 package sprint3_2.product;
 
+import sprint2_1.product.GameBoardPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -35,6 +37,7 @@ public class GUI extends JFrame {
     private void setContentPane(){
         GridBagConstraints gbc = new GridBagConstraints();
 
+        //maybe start everyone on simple and then switch so that I can have an abstract class
         gameLogic = new GameLogic();
         centerPanel = new CenterPanel(this, gameLogic);
         leftTopPanel = new LeftTopPanel(gameLogic);
@@ -99,12 +102,31 @@ public class GUI extends JFrame {
     public void GameStart(){
 //        redPlayerPanel.RedPlayerGameStart();
 //        bluePlayerPanel.BluePlayerGameStart();
-        leftTopPanel.GameStart();
-        leftPlayerPanel.GameStart();
-        leftBottomPanel.GameStart();
-        rightTopPanel.GameStart();
-        rightPlayerPanel.GameStart();
-        rightBottomPanel.GameStart();
+        //maybe all the new class instances can be passed here?
+        //makes starting a new gaem after one is over hard though
+        //maybe not too hard since nothing is actually concrete in game logic until the game starts
+        //currently I have the same game logic for as long as the program runs - I will have to reset the instance when using inheritance
+        //maybe use player moves as paramters for new instance
+        if(gameLogic.getGameMode() == GameLogic.GameMode.SIMPLE){
+////            gameLogic = null;
+//            GameLogic newGameLogic = new SimpleGameLogic(gameLogic);
+//            gameLogic = null;
+            gameLogic = new SimpleGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove());
+            //what is the term for having a sub class of type parent class
+        }
+        else{
+            gameLogic = new GeneralGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove());
+        }
+        gameLogic.initGame();
+        leftTopPanel.GameStart(gameLogic);
+        leftPlayerPanel.GameStart(gameLogic);
+        leftBottomPanel.GameStart(gameLogic);
+        rightTopPanel.GameStart(gameLogic);
+        rightPlayerPanel.GameStart(gameLogic);
+        rightBottomPanel.GameStart(gameLogic);
+        centerPanel.GameStart(gameLogic);
+        //game logic can recall all the set functions once the new instance is passed
+        //I need to ensure all necesary data is transfered to each new instance
         gameLogic.startGame(rightTopPanel.getBoardSizeInput());
         centerPanel.updateTurnDisplay();
     }
@@ -144,6 +166,7 @@ public class GUI extends JFrame {
     public CenterPanel getCenterPanel(){
         return centerPanel;
     }
+    public GameLogic getGameLogic(){return gameLogic;}
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

@@ -42,6 +42,9 @@ public class CenterPanel extends JPanel {
 
     //displays text at bottom indicating the player trun
     public void updateTurnDisplay(){
+        if(gameLogic.getGameState() == GameLogic.GameState.PLAYING){
+            System.out.println("test11");
+        }
         if(gameLogic.getTurn() == 0){
             turnInfo.setText("Press \"Start\" to begin");
         }
@@ -62,5 +65,9 @@ public class CenterPanel extends JPanel {
             turnInfo.setText("Player2 Turn");
         }
         repaint();
+    }
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
+        gameBoardPanel.GameStart(gameLogic);
     }
 }

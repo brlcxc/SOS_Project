@@ -59,7 +59,8 @@ public class RightBottomPanel extends JPanel {
 //            }
         }
     }
-    public void GameStart(){
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
         initiateGameButton.setText("New Game");
     }
 

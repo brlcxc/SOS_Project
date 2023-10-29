@@ -53,7 +53,8 @@ public class LeftTopPanel extends JPanel {
             gameLogic.setGameMode(GameLogic.GameMode.GENERAL);
         }
     }
-    public void GameStart(){
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
         simpleGame.setEnabled(false);
         generalGame.setEnabled(false);
     }

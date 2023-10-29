@@ -18,7 +18,8 @@ public class LeftBottomPanel extends JPanel {
 
         add(recordOption, BorderLayout.SOUTH);
     }
-    public void GameStart(){
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
         recordOption.setEnabled(false);
     }
 

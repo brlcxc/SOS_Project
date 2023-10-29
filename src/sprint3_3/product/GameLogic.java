@@ -1,6 +1,6 @@
-package sprint3_2.product;
+package sprint3_3.product;
 
-public class GameLogic {
+public abstract class GameLogic {
     public static int DEFAULT_DIMENSION = 6;
     public static int BOARD_MIN = 3;
     public static int BOARD_MAX = 12;
@@ -30,14 +30,12 @@ public class GameLogic {
     protected int piecesPlaced;
     protected Boolean combinationMade;
     protected int[][] turnRecorder;
+    //mmaybe I need a function that will return an instance of the game logic depending on the gamemode selected?
     public GameLogic(){
-//        selectedGameMode = GameMode.SIMPLE;
         totalRows = DEFAULT_DIMENSION;
         totalColumns = DEFAULT_DIMENSION;
-//        currentGameState = GameState.IDLE;
-//        bluePlayerTurn = true;
-//        redPlayerTurn = false;
-//        turn = 0;
+        bluePlayerMove = Cell.S;
+        redPlayerMove = Cell.S;
     }
 
     //Idle is the state used both before and after a game
@@ -61,9 +59,7 @@ public class GameLogic {
     }
     //returns boolean value indicating if the game was successfully started
     public Boolean startGame(int boardDimension) {
-        System.out.println("test7");
         if (currentGameState != GameState.PLAYING && verifyBoardInputSize(boardDimension)) {
-            System.out.println("test6");
             totalRows = boardDimension;
             totalColumns = boardDimension;
             grid = new Cell[totalRows][totalColumns];
@@ -80,13 +76,17 @@ public class GameLogic {
 
     //returns boolean value indicating if the move was successfully made
     public boolean makeMove(int row, int column){
-        System.out.println("oo");
         if (row < totalRows && column < totalColumns && grid[row][column] == GameLogic.Cell.EMPTY && currentGameState == GameLogic.GameState.PLAYING) {
-                return true;
+            piecesPlaced++;
+            System.out.println(piecesPlaced);
+            return true;
         }
         return false;
     }
-//    public abstract Boolean FindCombination(int row, int column);
+    //This method is implemented within the child classes
+    public abstract Boolean FindCombination(int row, int column);
+
+    //This method is called to find if the size input is within the correct parameters
     private Boolean verifyBoardInputSize(int boardDimension){
         if (boardDimension >= BOARD_MIN && boardDimension <= BOARD_MAX) {
             return true;
@@ -100,7 +100,6 @@ public class GameLogic {
     }
     public void setRedPlayerMove(Cell redPlayerMove){
         this.redPlayerMove = redPlayerMove;
-        System.out.println("test8");
     }
     public void setBluePlayerMove(Cell bluePlayerMove){
         this.bluePlayerMove = bluePlayerMove;
@@ -133,9 +132,6 @@ public class GameLogic {
         return totalRows;
     }
     public int getTotalColumns(){
-        return totalColumns;
-    }
-    public int getBoardDimension(){
         return totalColumns;
     }
     public GameState getGameState() {

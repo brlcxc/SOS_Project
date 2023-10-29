@@ -36,7 +36,8 @@ public class RightTopPanel extends JPanel {
     public int getBoardSizeInput(){
         return (Integer) boardSizeInput.getValue();
     }
-    public void GameStart(){
+    public void GameStart(GameLogic gameLogic){
+        this.gameLogic = gameLogic;
         boardSizeInput.setEnabled(false);
     }
     private class SizeListener implements ChangeListener {
