@@ -8,19 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sprint3_2/product/GeneralGameLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sprint3_2/product/SimpleGameLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/CenterPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/CenterPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/GameBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/GameBoardPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/LeftBottomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/LeftBottomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/LeftPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/LeftPlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/LeftTopPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/LeftTopPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/RightBottomPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/RightBottomPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/RightPlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/RightPlayerPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint3_2/product/RightTopPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_2/product/RightTopPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint3_3/test/TestBoardSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint3_3/test/TestBoardSize.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +40,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Personal/UMKC/UMKC Fall 2023/404/404 Project",
+    "last_opened_file_path": "C:/Personal/UMKC/UMKC Fall 2023/449/SOS Project",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -336,7 +325,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698033047191</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="sprint3_23 commit">
+      <created>1698613602711</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1698613602711</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -360,7 +356,8 @@
     <MESSAGE value="sprint3_0 commit" />
     <MESSAGE value="sprint3_0 commit refactoring" />
     <MESSAGE value="sprint3_2 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint3_2 commit" />
+    <MESSAGE value="sprint3_23 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint3_23 commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SOS_Project$sprint3_2.ic" NAME="sprint3_2 Coverage Results" MODIFIED="1698079578779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
