@@ -17,7 +17,7 @@ public abstract class SimpleGameLogic extends GameLogic{
             if (bluePlayerTurn) {
                 grid[row][column] = bluePlayerMove;
                 turnRecorder[row][column] = turn;
-                combinationMade = FindCombination(row, column);
+                combinationMade = findCombination(row, column);
                 if(combinationMade){
                     currentGameState = GameState.BLUE_WON;
                 }
@@ -31,7 +31,7 @@ public abstract class SimpleGameLogic extends GameLogic{
             } else {
                 grid[row][column] = redPlayerMove;
                 turnRecorder[row][column] = turn;
-                combinationMade = FindCombination(row, column);
+                combinationMade = findCombination(row, column);
                 if(combinationMade){
                     currentGameState = GameState.RED_WON;
                 }
@@ -48,7 +48,7 @@ public abstract class SimpleGameLogic extends GameLogic{
         }
         return false;
     }
-    public Boolean FindCombination(int row, int column){
+    public Boolean findCombination(int row, int column){
         Boolean flag = false;
         int x, y;
         if (grid[row][column] == Cell.S) {

@@ -2,8 +2,8 @@ package sprint4_1.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint3_3.product.GameLogic;
-import sprint3_3.product.SimpleGameLogic;
+import sprint4_1.product.GameLogic;
+import sprint4_1.product.SimpleComputerGameLogic;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ public class TestBoardSize {
     private GameLogic gameLogic;
     @Before
     public void setUp() throws Exception{
-        gameLogic = new SimpleGameLogic();
+        gameLogic = new SimpleComputerGameLogic();
         gameLogic.initGame();
     }
 

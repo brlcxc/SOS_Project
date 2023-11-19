@@ -83,7 +83,6 @@ public abstract class GameLogic {
     public boolean makeMove(int row, int column){
         if (row < totalRows && column < totalColumns && grid[row][column] == GameLogic.Cell.EMPTY && currentGameState == GameLogic.GameState.PLAYING) {
             piecesPlaced++;
-            System.out.println(piecesPlaced);
             return true;
         }
         return false;
@@ -159,6 +158,13 @@ public abstract class GameLogic {
     public GameMode getGameMode() {
         return selectedGameMode;
     }
+    public abstract Boolean findCombination(int row, int column);
     public abstract boolean makeComputerMove();
-    public abstract Boolean FindCombination(int row, int column);
+    public abstract Boolean findRandomMove(int location, int cellAmount);
+    public abstract Boolean findDefensiveMove(int location, int cellAmount);
+    public abstract Boolean CheckSDefensiveMove(int row, int column);
+    public abstract Boolean CheckODefensiveMove(int row, int column);
+    public abstract Boolean findSOSMove(int location, int cellAmount);
+    public abstract int CheckSCombination(int row, int column);
+    public abstract int CheckOCombination(int row, int column);
 }

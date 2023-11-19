@@ -1,9 +1,9 @@
 package sprint4_1.test;
 
 import org.junit.Test;
-import sprint3_3.product.GameLogic;
-import sprint3_3.product.SimpleGameLogic;
-import sprint3_3.product.GeneralGameLogic;
+import sprint4_1.product.GameLogic;
+import sprint4_1.product.SimpleComputerGameLogic;
+import sprint4_1.product.GeneralComputerGameLogic;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +13,7 @@ public class TestGameModeSelection {
     //acceptance criteria 2.1
     @Test
     public void testSimpleGameSelection() {
-        gameLogic = new SimpleGameLogic();
+        gameLogic = new SimpleComputerGameLogic();
         gameLogic.initGame();
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
         assertEquals("Game mode does not match Simple",GameLogic.GameMode.SIMPLE, gameLogic.getGameMode());
@@ -22,7 +22,7 @@ public class TestGameModeSelection {
     //acceptance criteria 2.2
     @Test
     public void testGeneralGameSelection() {
-        gameLogic = new GeneralGameLogic();
+        gameLogic = new GeneralComputerGameLogic();
         gameLogic.initGame();
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
         assertEquals("Game mode does not match General",GameLogic.GameMode.GENERAL, gameLogic.getGameMode());
@@ -30,7 +30,7 @@ public class TestGameModeSelection {
     //acceptance criteria 2.3
     @Test
     public void testApplyingGameModeDuringGame() {
-        gameLogic = new SimpleGameLogic();
+        gameLogic = new SimpleComputerGameLogic();
         gameLogic.initGame();
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
         gameLogic.setGameMode(GameLogic.GameMode.GENERAL);

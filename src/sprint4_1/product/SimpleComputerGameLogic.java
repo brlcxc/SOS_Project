@@ -3,12 +3,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class SimpleComputerGameLogic extends SimpleGameLogic{
 
-    SimpleComputerGameLogic(){
+    public SimpleComputerGameLogic(){
         super();
         redPlayerMode = PlayerMode.HUMAN;
         bluePlayerMode = PlayerMode.HUMAN;
     }
-    SimpleComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
+    public SimpleComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
         super(redPlayerMove, bluePlayerMove);
         this.redPlayerMode = redPlayerMode;
         this.bluePlayerMode = bluePlayerMode;
@@ -55,7 +55,7 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
         }
         return false;
     }
-    public void findRandomMove(int location, int cellAmount){
+    public Boolean findRandomMove(int location, int cellAmount){
         int cellIndex = ThreadLocalRandom.current().nextInt(1,  3);
         Cell randomCell = Cell.values()[cellIndex];
 
@@ -71,14 +71,14 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
                     redPlayerMove = randomCell;
                 }
                 makeMove(row, col);
-                break;
+                return true;
             }
             location++;
             if(location == cellAmount){
                 location = 0;
             }
         }
-
+        return false;
     }
     public Boolean CheckSDefensiveMove(int row, int column){
         int x, y;
@@ -106,7 +106,7 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
                 if (grid[row + y][column + x] == Cell.S){
                     return false;
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException ignored) {
             }
         }
         return true;
@@ -117,7 +117,7 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
             int col = location % totalColumns;
 
             if(grid[row][col] == Cell.EMPTY) {
-                if (CheckOCombination(row, col)) {
+                if (CheckOCombination(row, col) == 1) {
                     if(bluePlayerTurn){
                         bluePlayerMove = Cell.O;
                     }
@@ -126,7 +126,7 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
                     }
                     return(makeMove(row, col));
                 }
-                if (CheckSCombination(row, col)) {
+                if (CheckSCombination(row, col) == 1) {
                     if(bluePlayerTurn){
                         bluePlayerMove = Cell.S;
                     }
@@ -143,33 +143,33 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
         }
         return false;
     }
-    public Boolean CheckSCombination(int row, int column){
+    public int CheckSCombination(int row, int column){
         int x, y;
         for (int i = 0; i < 8; i++) {
             x = (int) Math.round(Math.cos(Math.toRadians(45 * i)));
             y = (int) Math.round(Math.sin(Math.toRadians(45 * i)));
             try {
                 if (grid[row + y][column + x] == Cell.O && grid[row + 2 * y][column + 2 * x] == Cell.S){
-                    return true;
+                    return 1;
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException ignored) {
             }
         }
-        return false;
+        return 0;
     }
-    public Boolean CheckOCombination(int row, int column){
+    public int CheckOCombination(int row, int column){
         int x, y;
         for(int i = 0; i < 4; i++){
             x = (int) Math.round(Math.cos(Math.toRadians(45 * i)));
             y = (int) Math.round(Math.sin(Math.toRadians(45 * i)));
             try {
                 if (grid[row + y][column + x] == Cell.S && grid[row + -1 * y][column + -1 * x] == Cell.S){
-                    return true;
+                    return 1;
                 }
             }
-            catch (ArrayIndexOutOfBoundsException e) {
+            catch (ArrayIndexOutOfBoundsException ignored) {
             }
         }
-        return false;
+        return 0;
     }
 }

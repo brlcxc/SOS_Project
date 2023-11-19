@@ -8,14 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sprint4_0/product/GeneralComputerGameLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sprint4_0/product/SimpleComputerGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestComputerOpponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_0/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_0/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_0/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_0/product/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_0/product/GeneralGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_0/product/GeneralGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_0/product/SimpleGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_0/product/SimpleGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GeneralComputerGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GeneralComputerGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GeneralGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GeneralGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/SimpleComputerGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/SimpleComputerGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/SimpleGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/SimpleGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestBoardSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestBoardSize.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGameModeSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGameModeSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGameStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGameStart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameOver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700064745294</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="sprint4_1 commit">
+      <created>1700361088505</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1700361088505</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -387,7 +401,8 @@
     <MESSAGE value="sprint3_2 commit" />
     <MESSAGE value="sprint3_23 commit" />
     <MESSAGE value="sprint4_0 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint4_0 commit" />
+    <MESSAGE value="sprint4_1 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint4_1 commit" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SOS_Project$sprint3_2.ic" NAME="sprint3_2 Coverage Results" MODIFIED="1698079578779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

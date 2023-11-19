@@ -3,12 +3,12 @@ package sprint4_1.product;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GeneralComputerGameLogic extends GeneralGameLogic {
-    GeneralComputerGameLogic(){
+    public GeneralComputerGameLogic(){
         super();
         redPlayerMode = PlayerMode.HUMAN;
         bluePlayerMode = PlayerMode.HUMAN;
     }
-    GeneralComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
+    public GeneralComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
         super(redPlayerMove, bluePlayerMove);
         this.redPlayerMode = redPlayerMode;
         this.bluePlayerMode = bluePlayerMode;
@@ -27,7 +27,6 @@ public class GeneralComputerGameLogic extends GeneralGameLogic {
             int col = location % totalColumns;
 
             if(grid[row][col] == Cell.EMPTY && ((randomCell == Cell.O && CheckODefensiveMove(row, col)) || (randomCell == Cell.S && CheckSDefensiveMove(row, col)))) {
-                System.out.println("help 22");
                 if(bluePlayerTurn){
                     bluePlayerMove = randomCell;
                 }
@@ -62,7 +61,7 @@ public boolean makeComputerMove() {
     return false;
 }
 
-    public void findRandomMove(int location, int cellAmount){
+    public Boolean findRandomMove(int location, int cellAmount){
 
         int cellIndex = ThreadLocalRandom.current().nextInt(1,  3);
         Cell randomCell = Cell.values()[cellIndex];
@@ -79,14 +78,14 @@ public boolean makeComputerMove() {
                     redPlayerMove = randomCell;
                 }
                 makeMove(row, col);
-                break;
+                return true;
             }
             location++;
             if(location == cellAmount){
                 location = 0;
             }
         }
-
+        return false;
     }
     public int CheckSCombination(int row, int column){
         int playerCombinations = 0;
@@ -145,14 +144,13 @@ public boolean makeComputerMove() {
                 if (grid[row + y][column + x] == Cell.S){
                     return false;
                 }
-            } catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException ignored) {
             }
         }
         return true;
     }
 
     public Boolean findSOSMove(int location, int cellAmount){
-
         int maxRow = 0;
         int maxCol = 0;
         int maxCombinations = 0;

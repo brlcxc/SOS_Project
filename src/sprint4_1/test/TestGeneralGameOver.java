@@ -2,8 +2,8 @@ package sprint4_1.test;
 
 import org.junit.Before;
 import org.junit.Test;
-import sprint3_3.product.GameLogic;
-import sprint3_3.product.GeneralGameLogic;
+import sprint4_1.product.GameLogic;
+import sprint4_1.product.GeneralComputerGameLogic;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,7 +12,7 @@ public class TestGeneralGameOver {
     private GameLogic gameLogic;
     @Before
     public void setUp() throws Exception{
-        gameLogic = new GeneralGameLogic();
+        gameLogic = new GeneralComputerGameLogic();
         gameLogic.initGame();
         gameLogic.startGame(GameLogic.DEFAULT_DIMENSION);
     }

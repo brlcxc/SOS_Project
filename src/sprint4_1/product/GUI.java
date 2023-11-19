@@ -117,32 +117,9 @@ public class GUI extends JFrame {
         centerPanel.GameStart(gameLogic);
         gameLogic.startGame(rightTopPanel.getBoardSizeInput());
         centerPanel.updateTurnDisplay();
-
-//        if(gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER){
-            ComputerMoveMade();
-//            sleep();
-//        }
-//        Timer timer = new Timer(1, new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                centerPanel.Repaint();
-//            }
-//        });
-//        timer.setRepeats(true);
-//        timer.start();
+        ComputerMoveMade();
         centerPanel.Repaint();
         centerPanel.updateTurnDisplay();
-    }
-    public void updateGUI(){
-        try {
-            SwingUtilities.invokeAndWait(() ->
-            {
-                centerPanel.Repaint();
-            });
-        }
-        catch (Exception e){
-
-        }
     }
 
     public void ComputerMoveMade(){
@@ -152,32 +129,28 @@ public class GUI extends JFrame {
                 gameLogic.makeComputerMove();
                 leftPlayerPanel.updateMoveDisplay();
                 rightPlayerPanel.updateMoveDisplay();
-                (new Thread(() -> {
-                    try {
-                        Thread.sleep(250);
-                        SwingUtilities.invokeAndWait(() ->
-                        {
-                            centerPanel.updateTurnDisplay();
-                            centerPanel.Repaint();
-                            ComputerMoveMade();
-                        });
-                    }catch(InterruptedException | InvocationTargetException e){
-                        e.printStackTrace(System.out);
-                    }
-                })).start();
+                paintComputerMove();
             }
         }
         leftPlayerPanel.updateMoveDisplay();
         rightPlayerPanel.updateMoveDisplay();
     }
-    public void sleep(){
-        try {
-            Thread.sleep(750);
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+    public void paintComputerMove(){
+        (new Thread(() -> {
+            try {
+                Thread.sleep(250);
+                SwingUtilities.invokeAndWait(() ->
+                {
+                    centerPanel.updateTurnDisplay();
+                    centerPanel.Repaint();
+                    ComputerMoveMade();
+                });
+            }catch(InterruptedException | InvocationTargetException e){
+                e.printStackTrace(System.out);
+            }
+        })).start();
     }
-    //stop method public to all other gui classes
+    //stop method public to all other classes in gui
     //calls stop method in other gui classes
     public void GameStop(){
         leftTopPanel.GameStop();
@@ -268,7 +241,7 @@ public class GUI extends JFrame {
             }
         }
 
-        //Sets the current blue player move to S
+        //Sets the current blue player move to O
         private class OButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 gameLogic.setBluePlayerMove(GameLogic.Cell.O);
@@ -284,7 +257,6 @@ public class GUI extends JFrame {
 
         private class ComputerButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("test");
                 gameLogic.setBluePlayerMode(GameLogic.PlayerMode.COMPUTER);
             }
         }
@@ -293,20 +265,6 @@ public class GUI extends JFrame {
             this.gameLogic = gameLogic;
             humanOption.setEnabled(false);
             computerOption.setEnabled(false);
-
-//            if(gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER){
-//                sOption.setEnabled(false);
-//                oOption.setEnabled(false);
-//            }
-
-//            sOption.doClick();
-            //this might not be necesary with the change to computer move where do click is called anyways
-/*            if (sOption.isSelected()) {
-                gameLogic.setBluePlayerMove(GameLogic.Cell.S);
-            }
-            else{
-                gameLogic.setBluePlayerMove(GameLogic.Cell.O);
-            }*/
         }
 
         public void GameStop() {
@@ -352,12 +310,7 @@ public class GUI extends JFrame {
             moveGroup.add(sOption);
             moveGroup.add(oOption);
 
-//            Border blackline = BorderFactory.createLineBorder(Color.black);
             playerLabel = new JLabel("Red Player");
-//            playerLabel.setOpaque(true);
-//            playerLabel.setBackground(Color.RED);
-//            playerLabel.setForeground(Color.WHITE);
-//            playerLabel.setBorder(blackline);
 
             setLayout(new GridBagLayout());
 
@@ -411,18 +364,6 @@ public class GUI extends JFrame {
             this.gameLogic = gameLogic;
             humanOption.setEnabled(false);
             computerOption.setEnabled(false);
-
-//            sOption.doClick();
-//            if (sOption.isSelected()) {
-//                gameLogic.setRedPlayerMove(GameLogic.Cell.S);
-//            }
-//            else{
-//                gameLogic.setRedPlayerMove(GameLogic.Cell.O);
-//            }
-//            if(gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.COMPUTER){
-//                sOption.setEnabled(false);
-//                oOption.setEnabled(false);
-//            }
         }
 
         public void GameStop(){
@@ -478,7 +419,7 @@ public class GUI extends JFrame {
             gui.repaint();
         }
 
-        //displays text at bottom indicating the player trun
+        //displays text at bottom indicating the player turn
         public void updateTurnDisplay() {
             if (gameLogic.getTurn() == 0) {
                 turnInfo.setText("Press \"Start\" to begin");
@@ -587,29 +528,24 @@ public class GUI extends JFrame {
             Font font = new Font("SansSerif",Font.BOLD, (int) (0.8 * cellSize));
             FontMetrics metrics = g.getFontMetrics(font);
             g.setFont(font);
-//            g.setColor(Color.BLACK);
 
             //Searches the entire array and places a piece in each game board cell associated with an array cell
             for (int row = 0; row < gameLogic.getTotalRows(); ++row) {
                 for (int col = 0; col < gameLogic.getTotalColumns(); ++col) {
                     if (gameLogic.getCell(row, col) == GameLogic.Cell.O) {
                         drawPiece(g, col, row, "O", metrics);
-//                        drawOCombinations(g2d, col, row);
                     }
                     else if (gameLogic.getCell(row, col) == GameLogic.Cell.S) {
                         drawPiece(g, col, row, "S", metrics);
-//                        drawSCombinations(g2d, col, row);
                     }
                 }
             }
             for (int row = 0; row < gameLogic.getTotalRows(); ++row) {
                 for (int col = 0; col < gameLogic.getTotalColumns(); ++col) {
                     if (gameLogic.getCell(row, col) == GameLogic.Cell.O) {
-//                        drawPiece(g, col, row, "O", metrics);
                         drawOCombinations(g2d, col, row);
                     }
                     else if (gameLogic.getCell(row, col) == GameLogic.Cell.S) {
-//                        drawPiece(g, col, row, "S", metrics);
                         drawSCombinations(g2d, col, row);
                     }
                 }
@@ -628,11 +564,9 @@ public class GUI extends JFrame {
                     int x2 = (col + (int) Math.round(Math.cos(Math.toRadians(45 * gameLogic.getCombinationDirection(row, col, i).ordinal())))) * cellSize + (cellSize / 2);
                     int y2 = (row + (int) Math.round(Math.sin(Math.toRadians(45 * gameLogic.getCombinationDirection(row, col, i).ordinal())))) * cellSize + (cellSize / 2);
                     if(gameLogic.getTurnRecorder(row, col) % 2 != 0) {
-//                        g2d.setColor(new Color(0, 0, 255, 180));
                         g2d.setColor(Color.BLUE);
                     }
                     else{
-//                        g2d.setColor(new Color(255, 0, 0, 180));
                         g2d.setColor(Color.RED);
                     }
                     g2d.drawLine(x1, y1, x2, y2);
@@ -648,12 +582,10 @@ public class GUI extends JFrame {
                     int x2 = (col + 2 * (int) Math.round(Math.cos(Math.toRadians(45 * gameLogic.getCombinationDirection(row, col, i).ordinal())))) * cellSize + (cellSize / 2);
                     int y2 = (row + 2 * (int) Math.round(Math.sin(Math.toRadians(45 * gameLogic.getCombinationDirection(row, col, i).ordinal())))) * cellSize + (cellSize / 2);
                     if(gameLogic.getTurnRecorder(row, col) % 2 != 0) {
-//                        g2d.setColor(new Color(0, 0, 255, 180));
                         g2d.setColor(Color.BLUE);
 
                     }
                     else{
-//                        g2d.setColor(new Color(255, 0, 0, 180));
                         g2d.setColor(Color.RED);
                     }
                     g2d.drawLine(x1, y1, x2, y2);
@@ -681,24 +613,9 @@ public class GUI extends JFrame {
                 int rowSelected = y / cellSize;
                 int colSelected = x / cellSize;
 
-                //If legal the move is made within makeMove()
-                //makeRow() returns false if the move has not been made
-                //Turn and player information is not updated unless the move is legal
-/*                if(gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER ){
-                    System.out.println("test3");
-                }
-                if(gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER || gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.COMPUTER){
-                    System.out.println("help");
-                    moveValidation = gameLogic.makeComputerMove();
-                    repaint();
-                }
-                else{
-                    moveValidation = gameLogic.makeComputerMove(rowSelected, colSelected);
-                }*/
                 moveValidation = gameLogic.makeMove(rowSelected, colSelected);
                 if (moveValidation) {
                     centerPanel.updateTurnDisplay();
-                    System.out.println("8");
                     gui.ComputerMoveMade();
                 }
             }
