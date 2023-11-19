@@ -1,4 +1,4 @@
-package sprint4_0.product;
+package sprint4_1.product;
 
 public abstract class SimpleGameLogic extends GameLogic{
     public SimpleGameLogic(){
@@ -12,14 +12,12 @@ public abstract class SimpleGameLogic extends GameLogic{
         selectedGameMode = GameMode.SIMPLE;
     }
     @Override
-    public boolean makeComputerMove(int row, int column) {
-        System.out.println("test 56");
-        if (super.makeComputerMove(row, column)) {
+    public boolean makeMove(int row, int column) {
+        if (super.makeMove(row, column)) {
             if (bluePlayerTurn) {
                 grid[row][column] = bluePlayerMove;
                 turnRecorder[row][column] = turn;
                 combinationMade = FindCombination(row, column);
-                System.out.println("test 5");
                 if(combinationMade){
                     currentGameState = GameState.BLUE_WON;
                 }

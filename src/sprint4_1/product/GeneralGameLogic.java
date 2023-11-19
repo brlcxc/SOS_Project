@@ -1,4 +1,4 @@
-package sprint4_0.product;
+package sprint4_1.product;
 //note different turn variable utilization
 public abstract class GeneralGameLogic extends GameLogic{
     private int redCombinations;
@@ -17,8 +17,8 @@ public abstract class GeneralGameLogic extends GameLogic{
     }
 
     @Override
-    public boolean makeComputerMove(int row, int column) {
-        if(super.makeComputerMove(row, column)){
+    public boolean makeMove(int row, int column) {
+        if(super.makeMove(row, column)){
             //blue player turn
             if (bluePlayerTurn) {
                 grid[row][column] = bluePlayerMove;

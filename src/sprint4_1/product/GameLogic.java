@@ -1,9 +1,9 @@
-package sprint4_0.product;
+package sprint4_1.product;
 
 public abstract class GameLogic {
     public static int DEFAULT_DIMENSION = 6;
     public static int BOARD_MIN = 3;
-    public static int BOARD_MAX = 100;
+    public static int BOARD_MAX = 12;
     public enum Cell {
         EMPTY, S, O
     }
@@ -35,7 +35,7 @@ public abstract class GameLogic {
     protected int piecesPlaced;
     protected Boolean combinationMade;
     protected int[][] turnRecorder;
-    //mmaybe I need a function that will return an instance of the game logic depending on the gamemode selected?
+
     public GameLogic(){
         totalRows = DEFAULT_DIMENSION;
         totalColumns = DEFAULT_DIMENSION;
@@ -80,7 +80,7 @@ public abstract class GameLogic {
     }
 
     //returns boolean value indicating if the move was successfully made
-    public boolean makeComputerMove(int row, int column){
+    public boolean makeMove(int row, int column){
         if (row < totalRows && column < totalColumns && grid[row][column] == GameLogic.Cell.EMPTY && currentGameState == GameLogic.GameState.PLAYING) {
             piecesPlaced++;
             System.out.println(piecesPlaced);
@@ -88,9 +88,6 @@ public abstract class GameLogic {
         }
         return false;
     }
-    public abstract boolean makeComputerMove();
-    //This method is implemented within the child classes
-    public abstract Boolean FindCombination(int row, int column);
 
     //This method is called to find if the size input is within the correct parameters
     private Boolean verifyBoardInputSize(int boardDimension){
@@ -162,4 +159,6 @@ public abstract class GameLogic {
     public GameMode getGameMode() {
         return selectedGameMode;
     }
+    public abstract boolean makeComputerMove();
+    public abstract Boolean FindCombination(int row, int column);
 }
