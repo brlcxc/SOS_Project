@@ -8,10 +8,11 @@ public class GeneralComputerGameLogic extends GeneralGameLogic {
         redPlayerMode = PlayerMode.HUMAN;
         bluePlayerMode = PlayerMode.HUMAN;
     }
-    public GeneralComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
+    public GeneralComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode, Boolean recording){
         super(redPlayerMove, bluePlayerMove);
         this.redPlayerMode = redPlayerMode;
         this.bluePlayerMode = bluePlayerMode;
+        this.recording = recording;
     }
 
     //Note: I should instead check the defensive move for both types rather than for just one

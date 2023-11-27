@@ -20,9 +20,11 @@ public abstract class SimpleGameLogic extends GameLogic{
                 combinationMade = findCombination(row, column);
                 if(combinationMade){
                     currentGameState = GameState.BLUE_WON;
+                    CloseFile();
                 }
                 else if (piecesPlaced == totalColumns * totalColumns) {
                     currentGameState = GameState.DRAW;
+                    CloseFile();
                 }
                 else {
                     bluePlayerTurn = false;
@@ -34,9 +36,11 @@ public abstract class SimpleGameLogic extends GameLogic{
                 combinationMade = findCombination(row, column);
                 if(combinationMade){
                     currentGameState = GameState.RED_WON;
+                    CloseFile();
                 }
                 else if (piecesPlaced == totalColumns * totalColumns) {
                     currentGameState = GameState.DRAW;
+                    CloseFile();
                 }
                 else {
                     bluePlayerTurn = true;

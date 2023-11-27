@@ -9,10 +9,11 @@ public class SimpleComputerGameLogic extends SimpleGameLogic{
         redPlayerMode = PlayerMode.HUMAN;
         bluePlayerMode = PlayerMode.HUMAN;
     }
-    public SimpleComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode){
+    public SimpleComputerGameLogic(GameLogic.Cell redPlayerMove, GameLogic.Cell bluePlayerMove, GameLogic.PlayerMode redPlayerMode, GameLogic.PlayerMode bluePlayerMode, Boolean recording){
         super(redPlayerMove, bluePlayerMove);
         this.redPlayerMode = redPlayerMode;
         this.bluePlayerMode = bluePlayerMode;
+        this.recording = recording;
     }
     @Override
     public boolean makeComputerMove() {

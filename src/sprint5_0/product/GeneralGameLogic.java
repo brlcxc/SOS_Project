@@ -56,6 +56,7 @@ public abstract class GeneralGameLogic extends GameLogic{
                 else {
                     currentGameState = GameState.DRAW;
                 }
+                CloseFile();
             }
             return true;
         }

@@ -10,8 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-
+import java.util.Scanner;
+//I need to fix acidnetal recording and deleting a file if record finsihes too soon
 import static java.lang.Math.min;
 
 public class GUI extends JFrame {
@@ -26,6 +29,7 @@ public class GUI extends JFrame {
     private final int WINDOW_WIDTH = 700;
     private final int WINDOW_HEIGHT = 440;
     private GameLogic gameLogic;
+    private Boolean replayedGame = false;
 
     public GUI(){
         setContentPane();
@@ -101,11 +105,14 @@ public class GUI extends JFrame {
     //start method public to all other gui classes
     //calls start method in other gui classes
     public void GameStart(){
+        //maybe have a call here to delete the file of a prior game?
+        //if game = recording and status = playing
+
         if(gameLogic.getGameMode() == GameLogic.GameMode.SIMPLE){
-            gameLogic = new SimpleComputerGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove(), gameLogic.getRedPlayerMode(), gameLogic.getBluePlayerMode());
+            gameLogic = new SimpleComputerGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove(), gameLogic.getRedPlayerMode(), gameLogic.getBluePlayerMode(), gameLogic.getRecording());
         }
         else{
-            gameLogic = new GeneralComputerGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove(), gameLogic.getRedPlayerMode(), gameLogic.getBluePlayerMode());
+            gameLogic = new GeneralComputerGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove(), gameLogic.getRedPlayerMode(), gameLogic.getBluePlayerMode(), gameLogic.getRecording());
         }
         gameLogic.initGame();
         leftTopPanel.GameStart(gameLogic);
@@ -117,9 +124,91 @@ public class GUI extends JFrame {
         centerPanel.GameStart(gameLogic);
         gameLogic.startGame(rightTopPanel.getBoardSizeInput());
         centerPanel.updateTurnDisplay();
-        ComputerMoveMade();
+        if(!replayedGame) {
+            ComputerMoveMade();
+        }
         centerPanel.Repaint();
         centerPanel.updateTurnDisplay();
+    }
+    public void ReplayMode(String filename){
+        replayedGame = true;
+        try {
+            Scanner sc = new Scanner(new File(filename));
+            gameLogic.setGameMode(GameLogic.GameMode.valueOf(sc.next()));
+            gameLogic.setBluePlayerMode(GameLogic.PlayerMode.valueOf(sc.next()));
+            gameLogic.setRedPlayerMode(GameLogic.PlayerMode.valueOf(sc.next()));
+            rightTopPanel.setBoardSizeInput(Integer.parseInt(sc.next()));
+            leftPlayerPanel.updatePlayerDisplay();
+            rightPlayerPanel.updatePlayerDisplay();
+            leftTopPanel.updateGameModeDisplay();
+            leftBottomPanel.TurnOffRecording();
+            GameStart();
+            ReplayMoveMade(sc);
+/*            gameLogic.setBluePlayerMove();
+            gameLogic.setRedPlayerMove();*/
+ /*                       while (sc.hasNextLine()) {
+                            System.out.println(sc.nextLine());
+                            System.out.println("test");
+                        }*/
+/*            int row, column;
+            while (sc.hasNext()) {
+                if(gameLogic.getBluePlayerTurn()){
+                    gameLogic.setBluePlayerMove(GameLogic.Cell.valueOf(sc.next()));
+                }
+                else{
+                    gameLogic.setRedPlayerMove(GameLogic.Cell.valueOf(sc.next()));
+                }
+                row = Integer.parseInt(sc.next());
+                column = Integer.parseInt(sc.next());
+                gameLogic.makeMove(row, column);
+            }*/
+        }
+        catch(IOException ignored){
+        }
+
+        //replay mode needs to be called directly before game start and call game start within
+        //I need to update game mode panel and size
+/*        replayedGame = true;
+        GameStart();*/
+/*        leftPlayerPanel.updatePlayerDisplay();
+        rightPlayerPanel.updatePlayerDisplay();
+        leftTopPanel.updateGameModeDisplay();*/
+//        centerPanel.Resize();
+        replayedGame = false;
+    }
+    public void ReplayMoveMade(Scanner sc){
+        if(gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+            int row, column;
+            if(gameLogic.getBluePlayerTurn()){
+                gameLogic.setBluePlayerMove(GameLogic.Cell.valueOf(sc.next()));
+            }
+            else{
+                gameLogic.setRedPlayerMove(GameLogic.Cell.valueOf(sc.next()));
+            }
+            row = Integer.parseInt(sc.next());
+            column = Integer.parseInt(sc.next());
+            gameLogic.makeMove(row, column);
+            leftPlayerPanel.updateMoveDisplay();
+            rightPlayerPanel.updateMoveDisplay();
+            paintReplayMove(sc);
+        }
+        leftPlayerPanel.updateMoveDisplay();
+        rightPlayerPanel.updateMoveDisplay();
+    }
+    public void paintReplayMove(Scanner sc){
+        (new Thread(() -> {
+            try {
+                Thread.sleep(250);
+                SwingUtilities.invokeAndWait(() ->
+                {
+                    centerPanel.updateTurnDisplay();
+                    centerPanel.Repaint();
+                    ReplayMoveMade(sc);
+                });
+            }catch(InterruptedException | InvocationTargetException e){
+                e.printStackTrace(System.out);
+            }
+        })).start();
     }
 
     public void ComputerMoveMade(){
@@ -153,6 +242,10 @@ public class GUI extends JFrame {
     //stop method public to all other classes in gui
     //calls stop method in other gui classes
     public void GameStop(){
+        if(gameLogic.getGameState() == GameLogic.GameState.PLAYING && gameLogic.getRecording()){
+            gameLogic.DeleteFile();
+            System.out.println("tets");
+        }
         leftTopPanel.GameStop();
         leftPlayerPanel.GameStop();
         leftBottomPanel.GameStop();
@@ -273,10 +366,22 @@ public class GUI extends JFrame {
         }
 
         public void updateMoveDisplay() {
-            if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
+            if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S && !sOption.isSelected()) {
                 sOption.doClick();
-            } else {
+            } else if(gameLogic.getBluePlayerMove() == GameLogic.Cell.O && !oOption.isSelected()){
                 oOption.doClick();
+            }
+        }
+        public void updatePlayerDisplay() {
+/*            if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S && !sOption.isSelected()) {
+                sOption.doClick();
+            } else if(gameLogic.getBluePlayerMove() == GameLogic.Cell.O && !oOption.isSelected()){
+                oOption.doClick();
+            }*/
+            if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.HUMAN && !humanOption.isSelected()) {
+                humanOption.doClick();
+            } else if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
+                computerOption.doClick();
             }
         }
     }
@@ -371,13 +476,31 @@ public class GUI extends JFrame {
             computerOption.setEnabled(true);
         }
         public void updateMoveDisplay() {
-            if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
+/*            if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
                 sOption.doClick();
             } else {
                 oOption.doClick();
+            }*/
+            if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S && !sOption.isSelected()) {
+                sOption.doClick();
+            } else if(gameLogic.getRedPlayerMove() == GameLogic.Cell.O && !oOption.isSelected()){
+                oOption.doClick();
             }
         }
+        public void updatePlayerDisplay() {
+            if (gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.HUMAN && !humanOption.isSelected()) {
+                humanOption.doClick();
+            } else if (gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
+                computerOption.doClick();
+            }
+/*            if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.HUMAN && !humanOption.isSelected()) {
+                humanOption.doClick();
+            } else if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
+                computerOption.doClick();
+            }*/
+        }
     }
+
     class CenterPanel extends JPanel {
         public GameBoardPanel gameBoardPanel;
         private GameLogic gameLogic;
@@ -417,6 +540,9 @@ public class GUI extends JFrame {
         }
         public void Repaint(){
             gui.repaint();
+        }
+        public void Resize(int newSize){
+            gameBoardPanel.SizeChange(newSize);
         }
 
         //displays text at bottom indicating the player turn
@@ -670,6 +796,13 @@ public class GUI extends JFrame {
                 gameLogic.setGameMode(GameLogic.GameMode.GENERAL);
             }
         }
+        public void updateGameModeDisplay() {
+            if (gameLogic.getGameMode() == GameLogic.GameMode.SIMPLE) {
+                simpleGame.doClick();
+            } else {
+                generalGame.doClick();
+            }
+        }
         public void GameStart(GameLogic gameLogic){
             this.gameLogic = gameLogic;
             simpleGame.setEnabled(false);
@@ -692,8 +825,22 @@ public class GUI extends JFrame {
             setLayout(new BorderLayout());
 
             recordOption.setBorder(new EmptyBorder(10,10,10,10));
+            recordOption.addActionListener(new RecordBoxListener());
 
             add(recordOption, BorderLayout.SOUTH);
+        }
+        public void TurnOffRecording(){
+            boolean selected = recordOption.getModel().isSelected();
+            if(selected){
+                recordOption.doClick();
+            }
+        }
+        private class RecordBoxListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                AbstractButton abstractButton = (AbstractButton) e.getSource();
+                boolean selected = abstractButton.getModel().isSelected();
+                gameLogic.setRecording(selected);
+            }
         }
         public void GameStart(GameLogic gameLogic){
             this.gameLogic = gameLogic;
@@ -734,6 +881,10 @@ public class GUI extends JFrame {
         public int getBoardSizeInput(){
             return (Integer) boardSizeInput.getValue();
         }
+        public void setBoardSizeInput(int size){
+            boardSizeInput.setValue(size);
+            gui.getCenterPanel().gameBoardPanel.SizeChange((Integer) boardSizeInput.getValue());
+        }
         public void GameStart(GameLogic gameLogic){
             this.gameLogic = gameLogic;
             boardSizeInput.setEnabled(false);
@@ -764,6 +915,7 @@ public class GUI extends JFrame {
 
             initiateGameButton = new JButton("Start");
             replayButton = new JButton("Replay");
+            replayButton.addActionListener(new ReplayButtonListener());
 
             initiateGameButton.addActionListener(new InitiateGameButtonListener());
 
@@ -795,20 +947,52 @@ public class GUI extends JFrame {
         private class InitiateGameButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if(gameLogic.getGameState() == GameLogic.GameState.IDLE) {
-                    gui.GameStart();
+                    //I might need to change this since it doesn't make sense to start a replay from here
+                        gui.GameStart();
+
                 }
                 else {
                     gui.GameStop();
                 }
             }
         }
+        private class ReplayButtonListener implements ActionListener {
+            public void actionPerformed(ActionEvent e) {
+                //game should start immediatly after sleecting file like with replay mode
+                JFileChooser fileChooser = new JFileChooser(new File("GameFiles")); // open file chooser dialog
+                int status = fileChooser.showOpenDialog(null); // returns the dialog box status
+                if (status == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    String filename = selectedFile.getPath();
+                    gui.ReplayMode(filename);
+                   /* try {
+                        Scanner sc = new Scanner(new File(filename));
+ *//*                       while (sc.hasNextLine()) {
+                            System.out.println(sc.nextLine());
+                            System.out.println("test");
+                        }*//*
+                        while (sc.hasNext()) {
+                            System.out.println(sc.next());
+                            System.out.println("test");
+                        }
+                    }
+                    catch(IOException ignored){
+                    }*/
+//                    System.out.println(new File(filename));
+
+//                    ReplayMode();
+                }
+            }
+        }
         public void GameStart(GameLogic gameLogic){
             this.gameLogic = gameLogic;
             initiateGameButton.setText("New Game");
+            replayButton.setEnabled(false);
         }
 
         public void GameStop(){
             initiateGameButton.setText("Start");
+            replayButton.setEnabled(true);
         }
     }
 }

@@ -1,5 +1,11 @@
 package sprint5_0.product;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public abstract class GameLogic {
     public static int DEFAULT_DIMENSION = 6;
     public static int BOARD_MIN = 3;
@@ -35,12 +41,16 @@ public abstract class GameLogic {
     protected int piecesPlaced;
     protected Boolean combinationMade;
     protected int[][] turnRecorder;
+    protected FileWriter myWriter;
+    protected Boolean recording;
+    private File file;
 
     public GameLogic(){
         totalRows = DEFAULT_DIMENSION;
         totalColumns = DEFAULT_DIMENSION;
         bluePlayerMove = Cell.S;
         redPlayerMove = Cell.S;
+        recording = false;
     }
 
     //Idle is the state used both before and after a game
@@ -72,6 +82,7 @@ public abstract class GameLogic {
             turnRecorder = new int[totalRows][totalColumns];
             setupBoard();
             currentGameState = GameState.PLAYING;
+            CreatingGameFile();
             turn = 1;
             piecesPlaced = 0;
             return true;
@@ -83,6 +94,7 @@ public abstract class GameLogic {
     public boolean makeMove(int row, int column){
         if (row < totalRows && column < totalColumns && grid[row][column] == GameLogic.Cell.EMPTY && currentGameState == GameLogic.GameState.PLAYING) {
             piecesPlaced++;
+            WriteMoveToFile(row, column);
             return true;
         }
         return false;
@@ -94,6 +106,50 @@ public abstract class GameLogic {
             return true;
         }
         return false;
+    }
+    private void CreatingGameFile(){
+        if(recording) {
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
+            String gameFile = "GameFiles/gameFile-" + sdf1.format(new Date()) + ".text";
+            try {
+                file = new File(gameFile);
+                file.createNewFile();
+                myWriter = new FileWriter(gameFile);
+                myWriter.write(selectedGameMode + " " + bluePlayerMode + " " + redPlayerMode + " " + totalColumns + "\n");
+            } catch (IOException e) {
+                System.out.println("Unable to create new file.");
+            }
+        }
+    }
+    private void WriteMoveToFile(int row, int column){
+        if(recording) {
+            try {
+                if (bluePlayerTurn) {
+                    myWriter.write(bluePlayerMove + " " + row + " " + column + "\n");
+                } else {
+                    myWriter.write(redPlayerMove + " " + row + " " + column + "\n");
+                }
+            } catch (IOException e) {
+                System.out.println("Writing failed");
+            }
+        }
+    }
+    protected void CloseFile(){
+        if(recording) {
+            try {
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println("Closing failed");
+            }
+        }
+    }
+    protected void DeleteFile(){
+        try {
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("Closing failed");
+        }
+        file.delete();
     }
     public void setGameMode(GameMode selectedGameMode){
         if (currentGameState != GameState.PLAYING) {
@@ -115,6 +171,12 @@ public abstract class GameLogic {
     }
     public void setBluePlayerMove(Cell bluePlayerMove){
         this.bluePlayerMove = bluePlayerMove;
+    }
+    public void setRecording(Boolean recording){
+        this.recording = recording;
+    }
+    public Boolean getRecording(){
+        return recording;
     }
     public Cell getRedPlayerMove(){
         return redPlayerMove;
@@ -168,3 +230,8 @@ public abstract class GameLogic {
     public abstract int CheckSCombination(int row, int column);
     public abstract int CheckOCombination(int row, int column);
 }
+
+//replay needs to be a gui function that just keeps calling make move with a thread
+//I need to store info such as who is computer and who isnt
+//the gui class needs to call a bunch of stters
+//I also need to pass record state to new games
