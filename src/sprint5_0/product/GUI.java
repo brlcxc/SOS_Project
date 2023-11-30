@@ -6,10 +6,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -582,6 +579,7 @@ public class GUI extends JFrame {
         private CenterPanel centerPanel;
         private GameBoardPanel.Mouse mouse;
         private GUI gui;
+        private int rowHover, colHover;
         GameBoardPanel(GUI gui, CenterPanel centerPanel, GameLogic gameLogic){
             this.gui = gui;
             this.centerPanel = centerPanel;
@@ -621,6 +619,9 @@ public class GUI extends JFrame {
             drawGridLines(g);
             if(gameLogic.getGameState() != GameLogic.GameState.IDLE){
                 drawBoard(g);
+            }
+            if(gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+                drawHover(g);
             }
         }
 
@@ -677,8 +678,38 @@ public class GUI extends JFrame {
                 }
             }
         }
+        private void drawHover(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setStroke(new BasicStroke(symbolStrokeWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+            Font font = new Font("SansSerif", Font.BOLD, (int) (0.8 * cellSize));
+            FontMetrics metrics = g.getFontMetrics(font);
+            g.setFont(font);
+            g.setColor(Color.GRAY);
+if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows() && colHover >= 0 && rowHover >= 0){
+            if (gameLogic.getCell(rowHover, colHover) == GameLogic.Cell.EMPTY && !replayedGame) {
+                if (gameLogic.getBluePlayerTurn() && gameLogic.getBluePlayerMode() != GameLogic.PlayerMode.COMPUTER) {
+                    if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
+                        drawPiece(g, colHover, rowHover, "S", metrics);
+                    } else {
+                        drawPiece(g, colHover, rowHover, "O", metrics);
+                    }
+                } else if (gameLogic.getRedPlayerTurn() && gameLogic.getRedPlayerMode() != GameLogic.PlayerMode.COMPUTER){
+                    if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
+                        drawPiece(g, colHover, rowHover, "S", metrics);
+                    } else {
+                        drawPiece(g, colHover, rowHover, "O", metrics);
+                    }
+                }
+            }
+        }
+//            drawPiece();
+
+//            int x = col * cellSize + (cellSize - metrics.stringWidth("O")) / 2;
+//            int y = row * cellSize + ((cellSize - metrics.getHeight()) / 2) + metrics.getAscent();
+//            g.drawString(piece, x, y);
+        }
         private void drawPiece(Graphics g, int col, int row, String piece, FontMetrics metrics) {
-            int x = col * cellSize + (cellSize - metrics.stringWidth("O")) / 2;
+            int x = col * cellSize + (cellSize - metrics.stringWidth(piece)) / 2;
             int y = row * cellSize + ((cellSize - metrics.getHeight()) / 2) + metrics.getAscent();
             g.drawString(piece, x, y);
         }
@@ -726,9 +757,68 @@ public class GUI extends JFrame {
             private GameBoardPanel gameBoardPanel;
             Mouse(GameBoardPanel gameBoardPanel){
                 this.gameBoardPanel = gameBoardPanel;
+                addMouseMotionListener(new test2());
             }
             public void mouseClicked(MouseEvent e) {
                 gameBoardPanel.test(e.getX(), e.getY());
+            }
+        }
+        public void callHoverPaint(int col, int row){
+            rowHover = row;
+            colHover = col;
+            repaint();
+/*            if (gameLogic.getBluePlayerTurn()) {
+                if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
+
+                } else {
+
+                }
+            } else {
+                if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
+
+                } else {
+
+                }
+            }*/
+        }
+        private class test2 implements MouseMotionListener {
+            int row = -1;
+            int col = -1;
+            public void mouseMoved(MouseEvent e) {
+                //not exactly correct but just changing the row/ colomun to an illegal value will fix the issue
+                    int newRow = e.getX() / cellSize;
+                    int newCol = e.getY() / cellSize;
+                if(e.getX() < 3 || e.getY() < 3){
+//                    System.out.println("test6");
+                    newRow = -1;
+                    newCol = -1;
+                }
+                System.out.println(e.getX() + "," + e.getY());
+                    if ((row != newRow || col != newCol) && gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+//                        System.out.println("help3 " + e.getX() + "," + e.getY());
+                            row = newRow;
+                            col = newCol;
+//                    System.out.println(row + "," + col);
+//                    repaint();
+                        callHoverPaint(row, col);
+                   /* if (gameLogic.getBluePlayerTurn()) {
+                        if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
+
+                        } else {
+
+                        }
+                    } else {
+                        if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
+
+                        } else {
+
+                        }
+                    }*/
+
+                }
+                //is it possible to have a new layer for painting?
+            }
+            public void mouseDragged(MouseEvent e) {
             }
         }
 

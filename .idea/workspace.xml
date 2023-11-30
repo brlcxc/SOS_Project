@@ -8,21 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fea8a6c4-43e9-47fd-9f75-04ad40639cb7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestComputerOpponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GeneralComputerGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GeneralComputerGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/GeneralGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/GeneralGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/SimpleComputerGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/SimpleComputerGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/product/SimpleGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/product/SimpleGameLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestBoardSize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestBoardSize.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGameModeSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGameModeSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGameStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGameStart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestGeneralGameOver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameOver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint4_1/test/TestSimpleGameOver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sprint5_0/product/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sprint5_0/product/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +49,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.sprint4_1">
+  <component name="RunManager" selected="Application.sprint5_0">
     <configuration name="sprint0_0" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sprint0_0.product.GUI" />
       <module name="SOS Project" />
@@ -160,6 +148,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="sprint5_0" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="sprint5_0.product.GUI" />
+      <module name="SOS Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestBoardSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SOS Project" />
       <extension name="coverage">
@@ -177,6 +172,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.sprint1_0" />
+      <item itemvalue="Application.sprint5_0" />
       <item itemvalue="Application.sprint0_1" />
       <item itemvalue="Application.sprint2_0" />
       <item itemvalue="Application.sprint2_1" />
@@ -375,7 +371,28 @@
       <option name="project" value="LOCAL" />
       <updated>1700361088505</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="sprint4_1 assignment commit">
+      <created>1700436400925</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1700436400925</updated>
+    </task>
+    <task id="LOCAL-00026" summary="sprint5_0 commit">
+      <created>1701019480705</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1701019480705</updated>
+    </task>
+    <task id="LOCAL-00027" summary="sprint5_0 functioning record and replay">
+      <created>1701121382029</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1701121382029</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -402,7 +419,10 @@
     <MESSAGE value="sprint3_23 commit" />
     <MESSAGE value="sprint4_0 commit" />
     <MESSAGE value="sprint4_1 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="sprint4_1 commit" />
+    <MESSAGE value="sprint4_1 assignment commit" />
+    <MESSAGE value="sprint5_0 commit" />
+    <MESSAGE value="sprint5_0 functioning record and replay" />
+    <option name="LAST_COMMIT_MESSAGE" value="sprint5_0 functioning record and replay" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SOS_Project$sprint3_2.ic" NAME="sprint3_2 Coverage Results" MODIFIED="1698079578779" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
