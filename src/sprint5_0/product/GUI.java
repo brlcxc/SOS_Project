@@ -35,6 +35,8 @@ public class GUI extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("SOS");
         font = new Font("SansSerif", 1, 18);
+        ImageIcon img = new ImageIcon("src/thumbnail_image001.png");
+        setIconImage(img.getImage());
         setVisible(true);
         resizeBoard();
     }
@@ -762,6 +764,11 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
             public void mouseClicked(MouseEvent e) {
                 gameBoardPanel.test(e.getX(), e.getY());
             }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                callHoverPaint(-1, -1);
+            }
         }
         public void callHoverPaint(int col, int row){
             rowHover = row;
@@ -788,6 +795,7 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
                 //not exactly correct but just changing the row/ colomun to an illegal value will fix the issue
                     int newRow = e.getX() / cellSize;
                     int newCol = e.getY() / cellSize;
+//                    | e.getX() > ((cellSize * cellNumber) - 3) || e.getY() > ((cellSize * cellNumber) - 3)
                 if(e.getX() < 3 || e.getY() < 3){
 //                    System.out.println("test6");
                     newRow = -1;
@@ -816,12 +824,17 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
                     }*/
 
                 }
+
                 //is it possible to have a new layer for painting?
             }
             public void mouseDragged(MouseEvent e) {
             }
-        }
 
+        }
+//        private class test3 implements MouseListener {
+//            public void mouseExited(MouseEvent e) {
+//            }
+//        }
         public void test(int x, int y) {
             if ((gameLogic.getGameState() == GameLogic.GameState.PLAYING)
                     && !(gameLogic.getBluePlayerTurn() && gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER)
