@@ -1,9 +1,9 @@
 package sprint5_0.test;
 
 import org.junit.Test;
-import sprint4_1.product.GameLogic;
-import sprint4_1.product.SimpleComputerGameLogic;
-import sprint4_1.product.GeneralComputerGameLogic;
+import sprint5_0.product.GameLogic;
+import sprint5_0.product.SimpleComputerGameLogic;
+import sprint5_0.product.GeneralComputerGameLogic;
 
 import static org.junit.Assert.assertEquals;
 

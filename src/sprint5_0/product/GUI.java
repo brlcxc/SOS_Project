@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
-//I need to fix acidnetal recording and deleting a file if record finsihes too soon
 import static java.lang.Math.min;
 
 public class GUI extends JFrame {
@@ -104,9 +103,6 @@ public class GUI extends JFrame {
     //start method public to all other gui classes
     //calls start method in other gui classes
     public void GameStart(){
-        //maybe have a call here to delete the file of a prior game?
-        //if game = recording and status = playing
-
         if(gameLogic.getGameMode() == GameLogic.GameMode.SIMPLE){
             gameLogic = new SimpleComputerGameLogic(gameLogic.getRedPlayerMove(), gameLogic.getBluePlayerMove(), gameLogic.getRedPlayerMode(), gameLogic.getBluePlayerMode(), gameLogic.getRecording());
         }
@@ -143,36 +139,9 @@ public class GUI extends JFrame {
             leftBottomPanel.TurnOffRecording();
             GameStart();
             ReplayMoveMade(sc);
-/*            gameLogic.setBluePlayerMove();
-            gameLogic.setRedPlayerMove();*/
- /*                       while (sc.hasNextLine()) {
-                            System.out.println(sc.nextLine());
-                            System.out.println("test");
-                        }*/
-/*            int row, column;
-            while (sc.hasNext()) {
-                if(gameLogic.getBluePlayerTurn()){
-                    gameLogic.setBluePlayerMove(GameLogic.Cell.valueOf(sc.next()));
-                }
-                else{
-                    gameLogic.setRedPlayerMove(GameLogic.Cell.valueOf(sc.next()));
-                }
-                row = Integer.parseInt(sc.next());
-                column = Integer.parseInt(sc.next());
-                gameLogic.makeMove(row, column);
-            }*/
         }
         catch(IOException ignored){
         }
-
-        //replay mode needs to be called directly before game start and call game start within
-        //I need to update game mode panel and size
-/*        replayedGame = true;
-        GameStart();*/
-/*        leftPlayerPanel.updatePlayerDisplay();
-        rightPlayerPanel.updatePlayerDisplay();
-        leftTopPanel.updateGameModeDisplay();*/
-//        centerPanel.Resize();
         replayedGame = false;
     }
     public void ReplayMoveMade(Scanner sc){
@@ -243,7 +212,6 @@ public class GUI extends JFrame {
     public void GameStop(){
         if(gameLogic.getGameState() == GameLogic.GameState.PLAYING && gameLogic.getRecording()){
             gameLogic.DeleteFile();
-            System.out.println("tets");
         }
         leftTopPanel.GameStop();
         leftPlayerPanel.GameStop();
@@ -372,11 +340,6 @@ public class GUI extends JFrame {
             }
         }
         public void updatePlayerDisplay() {
-/*            if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S && !sOption.isSelected()) {
-                sOption.doClick();
-            } else if(gameLogic.getBluePlayerMove() == GameLogic.Cell.O && !oOption.isSelected()){
-                oOption.doClick();
-            }*/
             if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.HUMAN && !humanOption.isSelected()) {
                 humanOption.doClick();
             } else if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
@@ -475,11 +438,6 @@ public class GUI extends JFrame {
             computerOption.setEnabled(true);
         }
         public void updateMoveDisplay() {
-/*            if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
-                sOption.doClick();
-            } else {
-                oOption.doClick();
-            }*/
             if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S && !sOption.isSelected()) {
                 sOption.doClick();
             } else if(gameLogic.getRedPlayerMove() == GameLogic.Cell.O && !oOption.isSelected()){
@@ -492,11 +450,6 @@ public class GUI extends JFrame {
             } else if (gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
                 computerOption.doClick();
             }
-/*            if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.HUMAN && !humanOption.isSelected()) {
-                humanOption.doClick();
-            } else if (gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER && !computerOption.isSelected()){
-                computerOption.doClick();
-            }*/
         }
     }
 
@@ -539,9 +492,6 @@ public class GUI extends JFrame {
         }
         public void Repaint(){
             gui.repaint();
-        }
-        public void Resize(int newSize){
-            gameBoardPanel.SizeChange(newSize);
         }
 
         //displays text at bottom indicating the player turn
@@ -687,28 +637,24 @@ public class GUI extends JFrame {
             FontMetrics metrics = g.getFontMetrics(font);
             g.setFont(font);
             g.setColor(Color.GRAY);
-if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows() && colHover >= 0 && rowHover >= 0){
-            if (gameLogic.getCell(rowHover, colHover) == GameLogic.Cell.EMPTY && !replayedGame) {
-                if (gameLogic.getBluePlayerTurn() && gameLogic.getBluePlayerMode() != GameLogic.PlayerMode.COMPUTER) {
-                    if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
-                        drawPiece(g, colHover, rowHover, "S", metrics);
-                    } else {
-                        drawPiece(g, colHover, rowHover, "O", metrics);
+            if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows() && colHover >= 0 && rowHover >= 0){
+                if (gameLogic.getCell(rowHover, colHover) == GameLogic.Cell.EMPTY && !replayedGame) {
+                    if (gameLogic.getBluePlayerTurn() && gameLogic.getBluePlayerMode() != GameLogic.PlayerMode.COMPUTER) {
+                        if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
+                            drawPiece(g, colHover, rowHover, "S", metrics);
+                        } else {
+                            drawPiece(g, colHover, rowHover, "O", metrics);
+                        }
                     }
-                } else if (gameLogic.getRedPlayerTurn() && gameLogic.getRedPlayerMode() != GameLogic.PlayerMode.COMPUTER){
-                    if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
-                        drawPiece(g, colHover, rowHover, "S", metrics);
-                    } else {
-                        drawPiece(g, colHover, rowHover, "O", metrics);
+                    else if (gameLogic.getRedPlayerTurn() && gameLogic.getRedPlayerMode() != GameLogic.PlayerMode.COMPUTER){
+                        if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
+                            drawPiece(g, colHover, rowHover, "S", metrics);
+                        } else {
+                            drawPiece(g, colHover, rowHover, "O", metrics);
+                        }
                     }
                 }
             }
-        }
-//            drawPiece();
-
-//            int x = col * cellSize + (cellSize - metrics.stringWidth("O")) / 2;
-//            int y = row * cellSize + ((cellSize - metrics.getHeight()) / 2) + metrics.getAscent();
-//            g.drawString(piece, x, y);
         }
         private void drawPiece(Graphics g, int col, int row, String piece, FontMetrics metrics) {
             int x = col * cellSize + (cellSize - metrics.stringWidth(piece)) / 2;
@@ -742,7 +688,6 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
                     int y2 = (row + 2 * (int) Math.round(Math.sin(Math.toRadians(45 * gameLogic.getCombinationDirection(row, col, i).ordinal())))) * cellSize + (cellSize / 2);
                     if(gameLogic.getTurnRecorder(row, col) % 2 != 0) {
                         g2d.setColor(Color.BLUE);
-
                     }
                     else{
                         g2d.setColor(Color.RED);
@@ -752,19 +697,18 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
                 }
             }
         }
-            public void GameStart(GameLogic gameLogic){
+        public void GameStart(GameLogic gameLogic){
             this.gameLogic = gameLogic;
         }
         private class Mouse extends MouseAdapter {
             private GameBoardPanel gameBoardPanel;
             Mouse(GameBoardPanel gameBoardPanel){
                 this.gameBoardPanel = gameBoardPanel;
-                addMouseMotionListener(new test2());
+                addMouseMotionListener(new CurrentMouseLocation());
             }
             public void mouseClicked(MouseEvent e) {
-                gameBoardPanel.test(e.getX(), e.getY());
+                gameBoardPanel.GUIMove(e.getX(), e.getY());
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
                 callHoverPaint(-1, -1);
@@ -774,68 +718,28 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
             rowHover = row;
             colHover = col;
             repaint();
-/*            if (gameLogic.getBluePlayerTurn()) {
-                if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
-
-                } else {
-
-                }
-            } else {
-                if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
-
-                } else {
-
-                }
-            }*/
         }
-        private class test2 implements MouseMotionListener {
+        private class CurrentMouseLocation implements MouseMotionListener {
             int row = -1;
             int col = -1;
             public void mouseMoved(MouseEvent e) {
-                //not exactly correct but just changing the row/ colomun to an illegal value will fix the issue
-                    int newRow = e.getX() / cellSize;
-                    int newCol = e.getY() / cellSize;
-//                    | e.getX() > ((cellSize * cellNumber) - 3) || e.getY() > ((cellSize * cellNumber) - 3)
+                int newRow = e.getX() / cellSize;
+                int newCol = e.getY() / cellSize;
                 if(e.getX() < 3 || e.getY() < 3){
-//                    System.out.println("test6");
                     newRow = -1;
                     newCol = -1;
                 }
-                System.out.println(e.getX() + "," + e.getY());
-                    if ((row != newRow || col != newCol) && gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
-//                        System.out.println("help3 " + e.getX() + "," + e.getY());
-                            row = newRow;
-                            col = newCol;
-//                    System.out.println(row + "," + col);
-//                    repaint();
+                if ((row != newRow || col != newCol) && gameLogic.getGameState() == GameLogic.GameState.PLAYING) {
+                    row = newRow;
+                    col = newCol;
                         callHoverPaint(row, col);
-                   /* if (gameLogic.getBluePlayerTurn()) {
-                        if (gameLogic.getBluePlayerMove() == GameLogic.Cell.S) {
-
-                        } else {
-
-                        }
-                    } else {
-                        if (gameLogic.getRedPlayerMove() == GameLogic.Cell.S) {
-
-                        } else {
-
-                        }
-                    }*/
-
                 }
-
-                //is it possible to have a new layer for painting?
             }
             public void mouseDragged(MouseEvent e) {
             }
-
         }
-//        private class test3 implements MouseListener {
-//            public void mouseExited(MouseEvent e) {
-//            }
-//        }
-        public void test(int x, int y) {
+
+        public void GUIMove(int x, int y) {
             if ((gameLogic.getGameState() == GameLogic.GameState.PLAYING)
                     && !(gameLogic.getBluePlayerTurn() && gameLogic.getBluePlayerMode() == GameLogic.PlayerMode.COMPUTER)
                     && !(gameLogic.getRedPlayerTurn() && gameLogic.getRedPlayerMode() == GameLogic.PlayerMode.COMPUTER)) {
@@ -1050,9 +954,7 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
         private class InitiateGameButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if(gameLogic.getGameState() == GameLogic.GameState.IDLE) {
-                    //I might need to change this since it doesn't make sense to start a replay from here
-                        gui.GameStart();
-
+                    gui.GameStart();
                 }
                 else {
                     gui.GameStop();
@@ -1061,29 +963,12 @@ if(colHover < gameLogic.getTotalColumns() && rowHover < gameLogic.getTotalRows()
         }
         private class ReplayButtonListener implements ActionListener {
             public void actionPerformed(ActionEvent e) {
-                //game should start immediatly after sleecting file like with replay mode
                 JFileChooser fileChooser = new JFileChooser(new File("GameFiles")); // open file chooser dialog
                 int status = fileChooser.showOpenDialog(null); // returns the dialog box status
                 if (status == JFileChooser.APPROVE_OPTION) {
                     File selectedFile = fileChooser.getSelectedFile();
                     String filename = selectedFile.getPath();
                     gui.ReplayMode(filename);
-                   /* try {
-                        Scanner sc = new Scanner(new File(filename));
- *//*                       while (sc.hasNextLine()) {
-                            System.out.println(sc.nextLine());
-                            System.out.println("test");
-                        }*//*
-                        while (sc.hasNext()) {
-                            System.out.println(sc.next());
-                            System.out.println("test");
-                        }
-                    }
-                    catch(IOException ignored){
-                    }*/
-//                    System.out.println(new File(filename));
-
-//                    ReplayMode();
                 }
             }
         }

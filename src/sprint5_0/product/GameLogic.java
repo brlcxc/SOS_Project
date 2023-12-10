@@ -230,8 +230,3 @@ public abstract class GameLogic {
     public abstract int CheckSCombination(int row, int column);
     public abstract int CheckOCombination(int row, int column);
 }
-
-//replay needs to be a gui function that just keeps calling make move with a thread
-//I need to store info such as who is computer and who isnt
-//the gui class needs to call a bunch of stters
-//I also need to pass record state to new games
