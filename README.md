@@ -7,11 +7,11 @@
   
   There is a simple and general game mode. Each player can either choose an “S'' or an “O” to place within any empty cell. For a simple game the goal is to be the player that completes the “SOS” combination first. The game starts with the blue player. Each time a piece is placed the turn is switched to the other player. There is a draw if the board is full with no combinations formed.
   
-  <img src="img\Screenshot 2023-12-06 220943.png" width="450">
+  <img src="https://github.com/brlcxc/SOS_Project/assets/90850429/38f67075-93d6-4f26-8af0-700ec5ca65d1" width="450">
   
   The general game is different in that the goal is to complete the most “SOS” combinations possible. The game ends when the board is full. The player with the most combinations wins. The game is considered a draw if there are no combinations made or if there are an equal number of combinations made between both players. The game starts with the blue player. If a piece is placed that forms an “SOS” the player can make another move during their turn. The turn is switched if a move is made with no “SOS” combinations 
   
-  <img src="img\Screenshot 2023-12-06 221013.png" width="450">
+  <img src="https://github.com/brlcxc/SOS_Project/assets/90850429/6915f89b-f93f-42e8-a890-7a04cfb0bc06" width="450">
   
   ### Board Size
   
@@ -25,4 +25,4 @@
   
   There is an option to record the game before the game starts. A file of the game is created which can be replayed through the replay option.
   
-  <img src="img\Screenshot 2023-12-06 221026.png" width="450">
+  <img src="https://github.com/brlcxc/SOS_Project/assets/90850429/3fafad9f-3701-47a3-9770-d3d11b199708" width="450">
